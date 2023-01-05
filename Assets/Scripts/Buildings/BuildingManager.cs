@@ -10,7 +10,7 @@ namespace Simpolony.Buildings
         [field: SerializeField] private BuildingPreview ActivePreview { get; set; }
 
 
-        [field: SerializeField] private InputButton LeftClick { get; set; }
+        [field: SerializeField] private InputButton PrimaryButton { get; set; }
 
         [field: SerializeField] private GameCameraData GameCameraData { get; set; }
 
@@ -18,22 +18,22 @@ namespace Simpolony.Buildings
         private void Update()
         {
             if (this.ActivePreview == null)
-                return;
+            {
+                if (this.PrimaryButton.WasPressed)
+                {
+                    this.ActivePreview = GameObject.Instantiate(this.Data.Preview);
+                }
+                else
+                    return;
+            }
 
-            this.ActivePreview.SetPosition();
+            this.ActivePreview.SetPosition(this.GameCameraData.WorldPosition);
 
-            if (this.LeftClick.WasPressed)
+            if (this.PrimaryButton.WasPressed)
             {
 
             }
         }
-
-    }
-
-    [CreateAssetMenu(fileName = "BuildingManagerData", menuName = "Data/Buildings/new Building Manager Data")]
-    public class BuildingManagerData : ScriptableObject
-    {
-        [field: SerializeField] public BuildingPreview Preview { get; private set; }
 
     }
 }

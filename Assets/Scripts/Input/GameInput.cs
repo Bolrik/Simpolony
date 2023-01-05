@@ -37,6 +37,15 @@ namespace Simpolony
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""PrimaryButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""e6087fa6-8a84-45b8-a8e0-cacd273506bc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -50,6 +59,17 @@ namespace Simpolony
                     ""action"": ""View Position"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8e4cdbe6-0297-4206-a989-ff6d335fda25"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PrimaryButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -59,6 +79,7 @@ namespace Simpolony
             // Player
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
             m_Player_ViewPosition = m_Player.FindAction("View Position", throwIfNotFound: true);
+            m_Player_PrimaryButton = m_Player.FindAction("PrimaryButton", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -119,11 +140,13 @@ namespace Simpolony
         private readonly InputActionMap m_Player;
         private IPlayerActions m_PlayerActionsCallbackInterface;
         private readonly InputAction m_Player_ViewPosition;
+        private readonly InputAction m_Player_PrimaryButton;
         public struct PlayerActions
         {
             private @GameInput m_Wrapper;
             public PlayerActions(@GameInput wrapper) { m_Wrapper = wrapper; }
             public InputAction @ViewPosition => m_Wrapper.m_Player_ViewPosition;
+            public InputAction @PrimaryButton => m_Wrapper.m_Player_PrimaryButton;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -136,6 +159,9 @@ namespace Simpolony
                     @ViewPosition.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnViewPosition;
                     @ViewPosition.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnViewPosition;
                     @ViewPosition.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnViewPosition;
+                    @PrimaryButton.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPrimaryButton;
+                    @PrimaryButton.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPrimaryButton;
+                    @PrimaryButton.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPrimaryButton;
                 }
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
@@ -143,6 +169,9 @@ namespace Simpolony
                     @ViewPosition.started += instance.OnViewPosition;
                     @ViewPosition.performed += instance.OnViewPosition;
                     @ViewPosition.canceled += instance.OnViewPosition;
+                    @PrimaryButton.started += instance.OnPrimaryButton;
+                    @PrimaryButton.performed += instance.OnPrimaryButton;
+                    @PrimaryButton.canceled += instance.OnPrimaryButton;
                 }
             }
         }
@@ -150,6 +179,7 @@ namespace Simpolony
         public interface IPlayerActions
         {
             void OnViewPosition(InputAction.CallbackContext context);
+            void OnPrimaryButton(InputAction.CallbackContext context);
         }
     }
 }

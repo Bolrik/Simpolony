@@ -18,7 +18,7 @@ namespace Simpolony
         // Update is called once per frame
         void Update()
         {
-            Debug.Log(this.ViewPosition.Read<Vector2>());
+
         }
     }
 }
