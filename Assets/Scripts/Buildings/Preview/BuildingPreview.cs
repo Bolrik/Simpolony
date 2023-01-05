@@ -67,6 +67,11 @@ namespace Simpolony.Buildings
             this.transform.position = worldPosition;
         }
 
+        public void Destroy()
+        {
+            GameObject.Destroy(this.gameObject);
+        }
+
         [System.Serializable]
         class BlockCheckComponent
         {
