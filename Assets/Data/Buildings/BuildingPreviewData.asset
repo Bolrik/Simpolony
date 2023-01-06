@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <InvalidColor>k__BackingField: {r: 1, g: 0, b: 0, a: 0.078431375}
   <ValidColor>k__BackingField: {r: 0, g: 1, b: 0, a: 0.078431375}
+  <ConnectionRenderer>k__BackingField: {fileID: 4324029618468686479, guid: c4507d01b1876334085dc85a97b33d8d,
+    type: 3}

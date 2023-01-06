@@ -6,5 +6,9 @@ namespace Simpolony
     public class GameData : ScriptableObject
     {
         [field: SerializeField] public bool ShowValidBuildingPreviewBlockedCheck { get; private set; }
+
+
+        [field: SerializeField] public bool IsBuilding { get; set; }
+
     }
 }

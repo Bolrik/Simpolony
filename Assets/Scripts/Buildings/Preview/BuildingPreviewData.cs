@@ -7,5 +7,7 @@ namespace Simpolony.Buildings
     {
         [field: SerializeField] public Color InvalidColor { get; private set; }
         [field: SerializeField] public Color ValidColor { get; private set; }
+
+        [field: SerializeField] public LineRenderer ConnectionRenderer { get; private set; }
     }
 }

@@ -348,6 +348,9 @@ MonoBehaviour:
     type: 2}
   <BuildingPreviewData>k__BackingField: {fileID: 11400000, guid: a93eb228a55a3234a9a5cc24d00b765f,
     type: 2}
+  <PreviewRenderer>k__BackingField: {fileID: 8385931264126975203}
+  <ScrollValue>k__BackingField: {fileID: 11400000, guid: 8d3325270721e2d42bfbf03bcd16ae51,
+    type: 2}
   <BlockCheck>k__BackingField:
     <Renderer>k__BackingField: {fileID: 5655798324824819390}
     <ProxyCollider>k__BackingField: {fileID: 2139113878306703465}
