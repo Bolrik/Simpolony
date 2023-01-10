@@ -9,7 +9,6 @@ namespace Simpolony.Buildings
     {
         [field: SerializeField, Header("Data")] private ConnectionManagerData Data { get; set; }
 
-
         public Dictionary<int, List<int>> Connections { get; set; } = new Dictionary<int, List<int>>();
         public List<Connection> VisualConnections { get; set; } = new List<Connection>();
         public GameObject ConnectionGameObject { get; set; }
@@ -21,34 +20,37 @@ namespace Simpolony.Buildings
                 for (int j = i + 1; j < toConnect.Length; j++)
                 {
                     this.AddConnection(i, j);
-                    this.AddConnection(j, i);
                 }
             }
         }
 
         private void AddConnection(int from, int to)
         {
-            if (!Connections.ContainsKey(from))
+            Debug.Log($"Try Connection: {from} >> {to}");
+
+            if (!this.Connections.ContainsKey(from))
             {
                 this.Connections[from] = new List<int>();
             }
-            if (!Connections.ContainsKey(to))
+            if (!this.Connections.ContainsKey(to))
             {
                 this.Connections[to] = new List<int>();
             }
 
-            if (!Connections[from].Contains(to) && !Connections[to].Contains(from))
+            if (!this.Connections[from].Contains(to) && !this.Connections[to].Contains(from))
             {
+                Debug.Log("New Connection");
+
                 this.Connections[from].Add(to);
                 this.Connections[to].Add(from);
 
                 if (this.ConnectionGameObject == null)
                     this.ConnectionGameObject = new GameObject("Connections");
 
-
                 Connection connection = Instantiate(this.Data.Connection, this.ConnectionGameObject.transform);
-                connection.SetNodes(from, to);
-                VisualConnections.Add(connection);
+                connection.SetIDs(from, to);
+
+                this.VisualConnections.Add(connection);
             }
         }
 
@@ -66,18 +68,17 @@ namespace Simpolony.Buildings
 
         private void RemoveConnection(int from, int to)
         {
-            if (Connections.ContainsKey(from) && Connections[from].Contains(to))
+            if (this.Connections.ContainsKey(from) && this.Connections[from].Contains(to))
             {
-                Connections[from].Remove(to);
-                Connections[to].Remove(from);
+                this.Connections[from].Remove(to);
 
                 // Find the Connection prefab for the from and to node IDs
-                Connection connection = VisualConnections.FirstOrDefault(x => x.FromNode == from && x.ToNode == to);
+                Connection connection = this.VisualConnections.FirstOrDefault(x => x.OriginID == from && x.TargetID == to);
 
                 // Remove the Connection prefab from the list and destroy it
                 if (connection != null)
                 {
-                    VisualConnections.Remove(connection);
+                    this.VisualConnections.Remove(connection);
                     Destroy(connection.gameObject);
                 }
             }

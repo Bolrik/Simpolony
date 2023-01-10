@@ -48,6 +48,15 @@ namespace Simpolony
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""SecondaryButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""d0bae6e0-ebc5-4286-a97f-68df9cbb6252"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""ScrollValue"",
                     ""type"": ""Value"",
                     ""id"": ""eaa21710-cfb5-438d-9d26-255d0ebc63d8"",
@@ -90,6 +99,17 @@ namespace Simpolony
                     ""action"": ""ScrollValue"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0a413988-0398-4e61-84f8-3aa9fdf4195d"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SecondaryButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -100,6 +120,7 @@ namespace Simpolony
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
             m_Player_ViewPosition = m_Player.FindAction("View Position", throwIfNotFound: true);
             m_Player_PrimaryButton = m_Player.FindAction("PrimaryButton", throwIfNotFound: true);
+            m_Player_SecondaryButton = m_Player.FindAction("SecondaryButton", throwIfNotFound: true);
             m_Player_ScrollValue = m_Player.FindAction("ScrollValue", throwIfNotFound: true);
         }
 
@@ -162,6 +183,7 @@ namespace Simpolony
         private IPlayerActions m_PlayerActionsCallbackInterface;
         private readonly InputAction m_Player_ViewPosition;
         private readonly InputAction m_Player_PrimaryButton;
+        private readonly InputAction m_Player_SecondaryButton;
         private readonly InputAction m_Player_ScrollValue;
         public struct PlayerActions
         {
@@ -169,6 +191,7 @@ namespace Simpolony
             public PlayerActions(@GameInput wrapper) { m_Wrapper = wrapper; }
             public InputAction @ViewPosition => m_Wrapper.m_Player_ViewPosition;
             public InputAction @PrimaryButton => m_Wrapper.m_Player_PrimaryButton;
+            public InputAction @SecondaryButton => m_Wrapper.m_Player_SecondaryButton;
             public InputAction @ScrollValue => m_Wrapper.m_Player_ScrollValue;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
@@ -185,6 +208,9 @@ namespace Simpolony
                     @PrimaryButton.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPrimaryButton;
                     @PrimaryButton.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPrimaryButton;
                     @PrimaryButton.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPrimaryButton;
+                    @SecondaryButton.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondaryButton;
+                    @SecondaryButton.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondaryButton;
+                    @SecondaryButton.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondaryButton;
                     @ScrollValue.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScrollValue;
                     @ScrollValue.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScrollValue;
                     @ScrollValue.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScrollValue;
@@ -198,6 +224,9 @@ namespace Simpolony
                     @PrimaryButton.started += instance.OnPrimaryButton;
                     @PrimaryButton.performed += instance.OnPrimaryButton;
                     @PrimaryButton.canceled += instance.OnPrimaryButton;
+                    @SecondaryButton.started += instance.OnSecondaryButton;
+                    @SecondaryButton.performed += instance.OnSecondaryButton;
+                    @SecondaryButton.canceled += instance.OnSecondaryButton;
                     @ScrollValue.started += instance.OnScrollValue;
                     @ScrollValue.performed += instance.OnScrollValue;
                     @ScrollValue.canceled += instance.OnScrollValue;
@@ -209,6 +238,7 @@ namespace Simpolony
         {
             void OnViewPosition(InputAction.CallbackContext context);
             void OnPrimaryButton(InputAction.CallbackContext context);
+            void OnSecondaryButton(InputAction.CallbackContext context);
             void OnScrollValue(InputAction.CallbackContext context);
         }
     }

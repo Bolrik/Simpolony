@@ -21,7 +21,9 @@ namespace Simpolony.Buildings
 
 
         List<Transform> BlockList { get; set; } = new List<Transform>();
-        List<Transform> LinkList { get; set; } = new List<Transform>();
+        List<Building> LinkList { get; set; } = new List<Building>();
+
+        public Building DesiredLink { get; private set; }
 
         private LineRenderer LinkRenderer { get; set; }
         int LinkIndex { get; set; } = 0;
@@ -50,6 +52,7 @@ namespace Simpolony.Buildings
             if (max == 0)
             {
                 this.LinkRenderer.enabled = false;
+                this.DesiredLink = null;
                 return;
             }
 
@@ -63,7 +66,8 @@ namespace Simpolony.Buildings
 
             this.LinkIndex = this.LinkIndex.Loop(max);
 
-            this.UpdateLine(this.LinkRenderer, this.LinkList[this.LinkIndex]);
+            this.DesiredLink = this.LinkList[this.LinkIndex];
+            this.UpdateLine(this.LinkRenderer);
         }
 
         private void UpdateIsValid()
@@ -97,23 +101,34 @@ namespace Simpolony.Buildings
 
         private void OnLinkProxyTriggerEnter2D(Collider2D collision)
         {
-            this.LinkList.Add(collision.transform);
+            Building building = this.GetComponent<Building>(collision.transform);
+
+            if (building == null)
+                return;
+
+            this.LinkList.Add(building);
 
             Debug.Log($"(+) Link: {this.LinkList.Count}");
         }
 
         private void OnLinkProxyTriggerExit2D(Collider2D collision)
         {
-            this.LinkList.Remove(collision.transform);
+            Building building = this.GetComponent<Building>(collision.transform);
+
+            if (building == null)
+                return;
+
+            this.LinkList.Remove(building);
 
             Debug.Log($"(-) Link: {this.LinkList.Count}");
         }
         #endregion
 
-        private void UpdateLine(LineRenderer renderer, Transform target)
+        private void UpdateLine(LineRenderer renderer)
         {
             renderer.SetPosition(0, this.transform.position);
-            renderer.SetPosition(1, target.position);
+            renderer.SetPosition(1, (this.transform.position + this.DesiredLink.transform.position) / 2f);
+            renderer.SetPosition(2, this.DesiredLink.transform.position);
         }
 
         public void SetPosition(Vector2 worldPosition)
@@ -124,6 +139,22 @@ namespace Simpolony.Buildings
         public void Destroy()
         {
             GameObject.Destroy(this.gameObject);
+        }
+
+        private T GetComponent<T>(Transform transform)
+            where T : Component
+        {
+            if (transform.GetComponent<T>() is T t1)
+            {
+                return t1;
+            }
+
+            if (transform.GetComponent<ProxyCollider>() is ProxyCollider proxy && proxy.Proxy.GetComponent<T>() is T t2)
+            {
+                return t2;
+            }
+
+            return null;
         }
 
         [System.Serializable]

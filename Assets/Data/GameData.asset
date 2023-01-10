@@ -13,3 +13,10 @@ MonoBehaviour:
   m_Name: GameData
   m_EditorClassIdentifier: 
   <ShowValidBuildingPreviewBlockedCheck>k__BackingField: 1
+  <BuildingConstructionManager>k__BackingField: {fileID: 11400000, guid: 333fb886a3f0eaf4287b1aed230ef62e,
+    type: 2}
+  <ConnectionManager>k__BackingField: {fileID: 11400000, guid: 919678d78103b15458c43e7bbaf68bcb,
+    type: 2}
+  <GameCameraData>k__BackingField: {fileID: 11400000, guid: 218981524dfc5ed42bf0d28d729e82c6,
+    type: 2}
+  <IsBuilding>k__BackingField: 0

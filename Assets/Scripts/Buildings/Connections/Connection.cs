@@ -4,16 +4,30 @@ namespace Simpolony.Buildings
 {
     public class Connection : MonoBehaviour
     {
-        [field: SerializeField] public Building Origin { get; private set; }
+        [field: SerializeField, Header("References")] private LineRenderer LineRenderer { get; set; }
+
+        [field: SerializeField, Header("Info")] public Building Origin { get; private set; }
         [field: SerializeField] public Building Target { get; private set; }
 
-        public int FromNode { get; private set; }
-        public int ToNode { get; private set; }
+        public int OriginID { get; private set; }
+        public int TargetID { get; private set; }
 
-        public void SetNodes(int from, int to)
+        public void SetIDs(int originID, int targetID)
         {
-            this.FromNode = from;
-            this.ToNode = to;
+            this.OriginID = originID;
+            this.Origin = BuildingsManager.Instance.Get(this.OriginID);
+
+            this.TargetID = targetID;
+            this.Target = BuildingsManager.Instance.Get(this.TargetID);
+
+            this.UpdateVisuals();
+        }
+
+        private void UpdateVisuals()
+        {
+            this.LineRenderer.SetPosition(0, this.Origin.transform.position);
+            this.LineRenderer.SetPosition(1, (this.Origin.transform.position + this.Target.transform.position) / 2f);
+            this.LineRenderer.SetPosition(2, this.Target.transform.position);
         }
     }
 

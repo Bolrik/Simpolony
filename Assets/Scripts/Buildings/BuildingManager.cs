@@ -7,12 +7,10 @@ namespace Simpolony.Buildings
     public class BuildingManager : MonoBehaviour
     {
         [field: SerializeField, Header("Data")] private GameData GameData { get; set; }
-        [field: SerializeField] private GameCameraData GameCameraData { get; set; }
         [field: SerializeField] private BuildingManagerData Data { get; set; }
 
-        [field: SerializeField, Header("References")] public BuildingConstructionManager BuildingConstructionManager { get; private set; }
-
         [field: SerializeField, Header("Input")] private InputButton PrimaryButton { get; set; }
+        [field: SerializeField] private InputButton SecondaryButton { get; set; }
 
         [field: SerializeField, Header("Info")] private BuildingPreview ActivePreview { get; set; }
 
@@ -62,28 +60,48 @@ namespace Simpolony.Buildings
                     return;
             }
 
+            if (this.SecondaryButton.WasPressed)
+            {
+                this.StopPreview();
+                return;
+            }
+
             this.UpdatePreviewPosition();
 
             if (this.ActivePreview.IsValid && this.PrimaryButton.WasPressed)
             {
-                this.ActivePreview.Destroy();
-                this.ActivePreview = null;
-
-                BuildingConstruction construction = this.BuildingConstructionManager.StartConstruction(this.ToBuild);
-                
-                if (construction != null)
-                {
-                    construction.Building.transform.position = this.GameCameraData.WorldPosition;
-
-                    BuildingDelivery delivery = new BuildingDelivery(construction);
-                    this.ActiveDeliveries.Add(delivery);
-                }
+                this.ConfirmPreview();
             }
+        }
+
+        private void ConfirmPreview()
+        {
+            Building connectionTarget = this.ActivePreview.DesiredLink;
+
+            this.StopPreview();
+
+            BuildingConstruction construction = this.GameData.BuildingConstructionManager.StartConstruction(this.ToBuild);
+
+            if (construction != null)
+            {
+                construction.Building.transform.position = this.GameData.GameCameraData.WorldPosition;
+
+                this.GameData.ConnectionManager.Connect(connectionTarget.ID, construction.Building.ID);
+
+                BuildingDelivery delivery = new BuildingDelivery(construction);
+                this.ActiveDeliveries.Add(delivery);
+            }
+        }
+
+        private void StopPreview()
+        {
+            this.ActivePreview.Destroy();
+            this.ActivePreview = null;
         }
 
         private void UpdatePreviewPosition()
         {
-            this.ActivePreview.SetPosition(this.GameCameraData.WorldPosition);
+            this.ActivePreview.SetPosition(this.GameData.GameCameraData.WorldPosition);
         }
 
         class BuildingDelivery

@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d22d80f33aaa5534581bca76e5ade8b1, type: 3}
-  m_Name: ConnectionManager
+  m_Script: {fileID: 11500000, guid: 09befa3d7ea1e7f4395fff52f3d12e83, type: 3}
+  m_Name: SecondaryButton
   m_EditorClassIdentifier: 
-  <Data>k__BackingField: {fileID: 11400000, guid: 2f0ebf8a65ff1e942bb46f234a6cbb88,
-    type: 2}

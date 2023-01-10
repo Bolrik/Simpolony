@@ -37,6 +37,7 @@ namespace Simpolony.Buildings
         }
     }
 
+    // Building Mapping Table
     public class BuildingsManager
     {
         #region Singleton Pattern
@@ -70,6 +71,14 @@ namespace Simpolony.Buildings
             {
                 this.Buildings.Remove(id);
             }
+        }
+
+        public Building Get(int id)
+        {
+            if (!this.Buildings.ContainsKey(id))
+                return null;
+
+            return this.Buildings[id];
         }
     }
 }

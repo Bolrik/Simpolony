@@ -24,6 +24,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "SecondaryButton",
+                    "type": "Button",
+                    "id": "d0bae6e0-ebc5-4286-a97f-68df9cbb6252",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "ScrollValue",
                     "type": "Value",
                     "id": "eaa21710-cfb5-438d-9d26-255d0ebc63d8",
@@ -64,6 +73,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "ScrollValue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0a413988-0398-4e61-84f8-3aa9fdf4195d",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SecondaryButton",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

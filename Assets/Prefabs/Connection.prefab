@@ -76,6 +76,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: -2, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
   - {x: 2, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
@@ -94,7 +95,7 @@ LineRenderer:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.5
-        value: 0.8
+        value: 0.5
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -162,3 +163,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b0960b0335be9f45bf2e2ee2b5a41d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <LineRenderer>k__BackingField: {fileID: 4324029618468686479}
+  <Origin>k__BackingField: {fileID: 0}
+  <Target>k__BackingField: {fileID: 0}
