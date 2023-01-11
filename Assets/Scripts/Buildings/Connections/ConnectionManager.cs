@@ -19,7 +19,7 @@ namespace Simpolony.Buildings
             {
                 for (int j = i + 1; j < toConnect.Length; j++)
                 {
-                    this.AddConnection(i, j);
+                    this.AddConnection(toConnect[i], toConnect[j]);
                 }
             }
         }

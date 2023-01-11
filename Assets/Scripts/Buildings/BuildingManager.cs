@@ -86,6 +86,8 @@ namespace Simpolony.Buildings
             {
                 construction.Building.transform.position = this.GameData.GameCameraData.WorldPosition;
 
+                Debug.Log($"Connecting: {connectionTarget.ID} :: {construction.Building.ID}");
+
                 this.GameData.ConnectionManager.Connect(connectionTarget.ID, construction.Building.ID);
 
                 BuildingDelivery delivery = new BuildingDelivery(construction);
