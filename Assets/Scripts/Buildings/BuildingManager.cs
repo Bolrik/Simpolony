@@ -1,123 +1,68 @@
 ﻿using FreschGames.Core.Input;
+using Simpolony.Misc;
+using Simpolony.State;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Simpolony.Buildings
 {
-    public class BuildingManager : MonoBehaviour
+    [CreateAssetMenu(fileName = "BuildingManager", menuName = "Data/Buildings/new Building Manager")]
+    public class BuildingManager : ManagerComponent
     {
         [field: SerializeField, Header("Data")] private GameData GameData { get; set; }
         [field: SerializeField] private BuildingManagerData Data { get; set; }
 
-        [field: SerializeField, Header("Input")] private InputButton PrimaryButton { get; set; }
-        [field: SerializeField] private InputButton SecondaryButton { get; set; }
 
-        [field: SerializeField, Header("Info")] private BuildingPreview ActivePreview { get; set; }
+        public Dictionary<int, Building> Buildings { get; private set; } = new Dictionary<int, Building>();
+        public Action<Building> OnAdded { get; set; }
+        public Action<Building> OnRemoved { get; set; }
 
-
-        [field: SerializeField, Header("Debug")] private BuildingData ToBuild { get; set; }
-
-
-        List<BuildingDelivery> ActiveDeliveries { get; set; } = new List<BuildingDelivery>();
-
-
-        private void Update()
+        public override void DoAwake()
         {
-            for (int i = this.ActiveDeliveries.Count - 1; i >= 0; i--)
-            {
-                BuildingDelivery delivery = this.ActiveDeliveries[i];
-
-                delivery.Time += Time.deltaTime;
-
-                if (delivery.Time >= delivery.Timer)
-                {
-                    delivery.Construction.Deliver(1);
-                    delivery.Time = 0;
-                }
-
-                if (delivery.Construction.IsDone)
-                {
-                    this.ActiveDeliveries.RemoveAt(i);
-                }
-            }
-
-            this.CheckBuild();
+            this.Buildings.Clear();
         }
 
-        private void CheckBuild()
+        public override void DoStart()
         {
-            this.GameData.IsBuilding = this.ActivePreview != null;
+            
+        }
 
-            if (this.ActivePreview == null)
+        public override void DoUpdate()
+        {
+
+        }
+
+
+
+
+        public void Add(int id, Building building)
+        {
+            if (this.Buildings.ContainsKey(id))
             {
-                if (this.PrimaryButton.WasPressed)
-                {
-                    this.ActivePreview = GameObject.Instantiate(this.Data.Preview);
-                    this.UpdatePreviewPosition();
-                    return;
-                }
-                else
-                    return;
+                Debug.Log("Potential error detected.");
             }
+            
+            this.Buildings[id] = building;
+            this.OnAdded?.Invoke(building);
+        }
 
-            if (this.SecondaryButton.WasPressed)
+        public void Remove(int id)
+        {
+            if (this.Buildings.ContainsKey(id))
             {
-                this.StopPreview();
-                return;
-            }
-
-            this.UpdatePreviewPosition();
-
-            if (this.ActivePreview.IsValid && this.PrimaryButton.WasPressed)
-            {
-                this.ConfirmPreview();
+                var building = this.Buildings[id];
+                this.Buildings.Remove(id);
+                this.OnRemoved?.Invoke(building);
             }
         }
 
-        private void ConfirmPreview()
+        public Building Get(int id)
         {
-            Building connectionTarget = this.ActivePreview.DesiredLink;
+            if (!this.Buildings.ContainsKey(id))
+                return null;
 
-            this.StopPreview();
-
-            BuildingConstruction construction = this.GameData.BuildingConstructionManager.StartConstruction(this.ToBuild);
-
-            if (construction != null)
-            {
-                construction.Building.transform.position = this.GameData.GameCameraData.WorldPosition;
-
-                Debug.Log($"Connecting: {connectionTarget.ID} :: {construction.Building.ID}");
-
-                this.GameData.ConnectionManager.Connect(connectionTarget.ID, construction.Building.ID);
-
-                BuildingDelivery delivery = new BuildingDelivery(construction);
-                this.ActiveDeliveries.Add(delivery);
-            }
-        }
-
-        private void StopPreview()
-        {
-            this.ActivePreview.Destroy();
-            this.ActivePreview = null;
-        }
-
-        private void UpdatePreviewPosition()
-        {
-            this.ActivePreview.SetPosition(this.GameData.GameCameraData.WorldPosition);
-        }
-
-        class BuildingDelivery
-        {
-            [field: SerializeField] public BuildingConstruction Construction { get; private set; }
-
-            [field: SerializeField] public float Time { get; set; }
-            public float Timer { get => this.Construction.Data.ConstructionStepTime; }
-
-
-            public BuildingDelivery(BuildingConstruction construction)
-            {
-                this.Construction = construction;
-            }
+            return this.Buildings[id];
         }
     }
 }

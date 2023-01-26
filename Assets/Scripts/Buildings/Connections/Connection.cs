@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using FreschGames.Core.Input;
+using UnityEngine;
 
 namespace Simpolony.Buildings
 {
@@ -12,13 +13,24 @@ namespace Simpolony.Buildings
         public int OriginID { get; private set; }
         public int TargetID { get; private set; }
 
-        public void SetIDs(int originID, int targetID)
-        {
-            this.OriginID = originID;
-            this.Origin = BuildingsManager.Instance.Get(this.OriginID);
+        //public void SetIDs(int originID, int targetID)
+        //{
+        //    this.OriginID = originID;
+        //    this.Origin = BuildingsManager.Instance.Get(this.OriginID);
 
-            this.TargetID = targetID;
-            this.Target = BuildingsManager.Instance.Get(this.TargetID);
+        //    this.TargetID = targetID;
+        //    this.Target = BuildingsManager.Instance.Get(this.TargetID);
+
+        //    this.UpdateVisuals();
+        //}
+
+        public void SetTargets(Building origin, Building target)
+        {
+            this.Origin = origin;
+            this.OriginID = this.Origin.ID;
+
+            this.Target = target;
+            this.TargetID = this.Target.ID;
 
             this.UpdateVisuals();
         }
@@ -30,5 +42,4 @@ namespace Simpolony.Buildings
             this.LineRenderer.SetPosition(2, this.Target.transform.position);
         }
     }
-
 }

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using Simpolony.UI.SidePanelElements;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,53 +9,51 @@ namespace Simpolony.UI
 {
     public class GameScreen : UIElement
     {
-        [field: SerializeField] private GameScreenBuildMenu GameScreenBuildMenu { get; set; }
+        [field: SerializeField] private SidePanel SidePanel { get; set; }
+        [field: SerializeField] private WavePanel WavePanel { get; set; }
 
         private void Start()
         {
-            this.GameScreenBuildMenu.Initialize(this, this.Document.rootVisualElement);
+            this.SidePanel.Initialize(this, this.Document.rootVisualElement);
+            this.WavePanel.Initialize(this, this.Document.rootVisualElement);
         }
     }
 
+
+
     [System.Serializable]
-    public class GameScreenBuildMenu
+    public class WavePanel
     {
-        [field: SerializeField] private string Name { get; set; } = "BuildMenu";
+        [field: SerializeField, Header("Names")] private string WaveDisplayName { get; set; } = "WaveDisplay";
+        [field: SerializeField] private string WaveNumberName { get; set; } = "WaveNumber";
+        [field: SerializeField] private string WaveFillName { get; set; } = "Fill";
+        [field: SerializeField] private string EnemyCountName { get; set; } = "EnemyCount";
 
-        [field: SerializeField] private VisualTreeAsset ButtonTemplate { get; set; }
 
-        VisualElement MenuRoot { get; set; }
-        List<GameScreenBuildMenuButton> Buttons { get; set; } = new List<GameScreenBuildMenuButton>();
+        [field: SerializeField] private GameData GameData { get; set; }
+
+        VisualElement WaveDisplay { get; set; }
+        Label WaveNumber { get; set; }
+        Label EnemyCount { get; set; }
+        VisualElement Fill { get; set; }
+
 
         internal void Initialize(UIElement root, VisualElement visualElement)
         {
-            this.MenuRoot = visualElement.Q<VisualElement>(this.Name);
+            this.WaveDisplay = visualElement.Q<VisualElement>(this.WaveDisplayName);
+            this.WaveNumber = this.WaveDisplay.Q<Label>(this.WaveNumberName);
+            this.EnemyCount = this.WaveDisplay.Q<Label>(this.EnemyCountName);
+            this.Fill = this.WaveDisplay.Q<VisualElement>(this.WaveFillName);
 
-
-            for (int i = 0; i < 5; i++)
-            {
-                TemplateContainer template = this.ButtonTemplate.Instantiate();
-                this.MenuRoot.Add(template);
-
-                GameScreenBuildMenuButton button = new GameScreenBuildMenuButton();
-
-                this.Buttons.Add(button);
-                button.Initialize(root, template);
-            }
+            root.OnUpdate += this.Update;
         }
-    }
 
-    [System.Serializable]
-    public class GameScreenBuildMenuButton
-    {
-        [field: SerializeField] private string Name { get; set; } = "BuildMenuButton";
-
-        Button Button { get; set; }
-
-        internal void Initialize(UIElement root, VisualElement visualElement)
+        private void Update()
         {
-            this.Button = visualElement.Q<Button>(this.Name);
-            this.Button.style.backgroundColor = new Color(Random.value, Random.value, Random.value);
+            this.WaveNumber.text = $"{this.GameData.WaveManager.WaveNumber}";
+            this.EnemyCount.text = $"{this.GameData.WaveManager.EnemiesRemaining}";
+            
+            this.Fill.style.right = new StyleLength(new Length((this.GameData.WaveManager.WaveTimer / this.GameData.WaveManager.WaveTimerMax) * 100, LengthUnit.Percent));
         }
     }
 }

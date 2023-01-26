@@ -12,11 +12,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27e4ba476c4704e4f9ff824c52b30475, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  <ShowValidBuildingPreviewBlockedCheck>k__BackingField: 1
+  <BuildingManager>k__BackingField: {fileID: 11400000, guid: 34360919590fc494c9e376e7fc2d4941,
+    type: 2}
   <BuildingConstructionManager>k__BackingField: {fileID: 11400000, guid: 333fb886a3f0eaf4287b1aed230ef62e,
+    type: 2}
+  <ShowValidBuildingPreviewBlockedCheck>k__BackingField: 1
+  <BuildingDeliveryManager>k__BackingField: {fileID: 11400000, guid: 66a3773d17b65d441975a0fe6a4afd2f,
     type: 2}
   <ConnectionManager>k__BackingField: {fileID: 11400000, guid: 919678d78103b15458c43e7bbaf68bcb,
     type: 2}
+  <ConnectionDistanceMax>k__BackingField: 4
+  <ResourceManager>k__BackingField: {fileID: 11400000, guid: 62c18a37f54415648bfd9cee02690c68,
+    type: 2}
   <GameCameraData>k__BackingField: {fileID: 11400000, guid: 218981524dfc5ed42bf0d28d729e82c6,
     type: 2}
-  <IsBuilding>k__BackingField: 0
+  <GameStateManager>k__BackingField: {fileID: 11400000, guid: da2f621b818d61a48946010818d8ea63,
+    type: 2}
+  <GameStateManagerData>k__BackingField: {fileID: 11400000, guid: ef6e7297ce5201249b9737077e1ba883,
+    type: 2}
+  <WaveManager>k__BackingField: {fileID: 11400000, guid: a324105f3d50b0f40a46405260fb3945,
+    type: 2}
+  <UnitManager>k__BackingField: {fileID: 11400000, guid: 9065bd188431d324daa0a1f438257d4c,
+    type: 2}
+  <BuildingLayer>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 256
+  <Input>k__BackingField:
+    <PrimaryButton>k__BackingField: {fileID: 11400000, guid: ae8940560dfdd0e4e833cf71fdb3c705,
+      type: 2}
+    <SecondaryButton>k__BackingField: {fileID: 11400000, guid: 845b49c90b567524ea76ddb8c04ef5a5,
+      type: 2}
+    <ScrollValue>k__BackingField: {fileID: 11400000, guid: 8d3325270721e2d42bfbf03bcd16ae51,
+      type: 2}
+    <ViewPosition>k__BackingField: {fileID: 11400000, guid: 172f410475226b74695a789ce6367080,
+      type: 2}
+    <CameraMovement>k__BackingField: {fileID: 11400000, guid: 89e657e28949735439c898f63a6f9783,
+      type: 2}
+  <PrefabCatalog>k__BackingField: {fileID: 11400000, guid: a0083e178cb7919409e72f7576542d6c,
+    type: 2}

@@ -8,6 +8,8 @@ namespace Simpolony.Buildings
     {
         [field: SerializeField, Header("Prefabs")] public Building Building { get; private set; }
         [field: SerializeField] public BuildingConstruction Construction { get; private set; }
+        [field: SerializeField] public BuildingPreview Preview { get; private set; }
+
 
         [field: SerializeField, Header("References")] public ResourceManager ResourceManager { get; private set; }
 

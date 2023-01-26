@@ -1,4 +1,4 @@
-﻿using Simpolony.Buildings;
+﻿using System;
 using UnityEngine;
 
 namespace Simpolony.Resources
@@ -13,9 +13,19 @@ namespace Simpolony.Resources
             return this.Available;
         }
 
+        public void SetResources(int amount)
+        {
+            this.Available = amount.Abs();
+        }
+
         public void UseResources(int amount)
         {
-            this.Available -= amount;
+            this.Available -= amount.Abs();
+        }
+
+        public void AddResources(int amount)
+        {
+            this.Available += amount.Abs();
         }
     }
 }

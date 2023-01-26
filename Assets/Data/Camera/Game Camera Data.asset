@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6f911937f96de547bf8d317005cfe7d, type: 3}
   m_Name: Game Camera Data
   m_EditorClassIdentifier: 
-  <WorldPosition>k__BackingField: {x: 0, y: 0}
+  <CameraSpeed>k__BackingField: 3
+  <MouseCameraSpeed>k__BackingField: 1
+  <ZoomSpeed>k__BackingField: 2
+  <ZoomSpeedModifier>k__BackingField: 0.01
+  <ZoomConstraints>k__BackingField:
+    min: 3
+    max: 12

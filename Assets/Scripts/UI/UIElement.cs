@@ -8,7 +8,7 @@ namespace Simpolony.UI
     {
         [field: SerializeField] public UIDocument Document { get; private set; }
 
-        Action OnUpdate { get; set; }
+        public Action OnUpdate { get; set; }
 
         public void Register(Action action)
         {
@@ -16,7 +16,7 @@ namespace Simpolony.UI
         }
 
 
-        private void Update()
+        protected virtual void Update()
         {
             this.OnUpdate?.Invoke();
         }

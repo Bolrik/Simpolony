@@ -16,5 +16,7 @@ MonoBehaviour:
     type: 3}
   <Construction>k__BackingField: {fileID: 5718353122432552505, guid: 26b906d059304f24e8216948815c338e,
     type: 3}
+  <Preview>k__BackingField: {fileID: 8385931264126975214, guid: 15dc4141c4b923c46a009dea08cb594e,
+    type: 3}
   <ResourceManager>k__BackingField: {fileID: 11400000, guid: 62c18a37f54415648bfd9cee02690c68,
     type: 2}

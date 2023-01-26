@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Connection>k__BackingField: {fileID: 215750554472557375, guid: c4507d01b1876334085dc85a97b33d8d,
     type: 3}
+  <LinkPreview>k__BackingField: {fileID: 8776746525881323484, guid: 5b550aecca7ec3441b623fa777efb0d9,
+    type: 3}

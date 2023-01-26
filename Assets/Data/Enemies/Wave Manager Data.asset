@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10ae60a25e7402049adbc39e8ce6815e, type: 3}
+  m_Name: Wave Manager Data
+  m_EditorClassIdentifier: 
+  <TimeBetweenWaves>k__BackingField: 30
+  <TimeBetweenSpawns>k__BackingField: 0.25
+  <SpawnDistance>k__BackingField:
+    min: 30
+    max: 40
+  <BaseWaveBudget>k__BackingField: 2
+  <WaveBudgetIncreasePerLevel>k__BackingField: 5
+  <EnemyData>k__BackingField:
+  - <EnemyData>k__BackingField: {fileID: 11400000, guid: 9e32c5216ff4905498976c36ffb7a803,
+      type: 2}
+    <Chance>k__BackingField: 60
+    <WaveChanceModifier>k__BackingField: -1
+    <StartingWave>k__BackingField: 0
+    <Cost>k__BackingField: 2
+  - <EnemyData>k__BackingField: {fileID: 11400000, guid: 660aacc707784094e98b270fede73dfe,
+      type: 2}
+    <Chance>k__BackingField: 10
+    <WaveChanceModifier>k__BackingField: 8
+    <StartingWave>k__BackingField: 1
+    <Cost>k__BackingField: 4
+  - <EnemyData>k__BackingField: {fileID: 11400000, guid: e26362c23dd4df945b1ea273941f4441,
+      type: 2}
+    <Chance>k__BackingField: 15
+    <WaveChanceModifier>k__BackingField: 8
+    <StartingWave>k__BackingField: 5
+    <Cost>k__BackingField: 3
+  - <EnemyData>k__BackingField: {fileID: 11400000, guid: 9f11fd245ecaf1542b7f351e1c9c57fa,
+      type: 2}
+    <Chance>k__BackingField: 25
+    <WaveChanceModifier>k__BackingField: 8
+    <StartingWave>k__BackingField: 5
+    <Cost>k__BackingField: 3
+  - <EnemyData>k__BackingField: {fileID: 11400000, guid: dcc851d7c86314d468516ffa6ef31cf2,
+      type: 2}
+    <Chance>k__BackingField: 25
+    <WaveChanceModifier>k__BackingField: 9
+    <StartingWave>k__BackingField: 10
+    <Cost>k__BackingField: 4
+  - <EnemyData>k__BackingField: {fileID: 11400000, guid: 114b02e1745bbae41a7f9dddc0ceacda,
+      type: 2}
+    <Chance>k__BackingField: 25
+    <WaveChanceModifier>k__BackingField: 9
+    <StartingWave>k__BackingField: 10
+    <Cost>k__BackingField: 5
+  - <EnemyData>k__BackingField: {fileID: 11400000, guid: 766df64d4ffbee8449d9c2e9d1c6ba67,
+      type: 2}
+    <Chance>k__BackingField: 25
+    <WaveChanceModifier>k__BackingField: 10
+    <StartingWave>k__BackingField: 15
+    <Cost>k__BackingField: 9
+  <EnemyPrefab>k__BackingField: {fileID: 3479947400402493964, guid: e69e55adc41542a45a2d87c7eb5d02be,
+    type: 3}

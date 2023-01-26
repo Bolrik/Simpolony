@@ -64,6 +64,15 @@ namespace Simpolony
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""CameraMovement"",
+                    ""type"": ""Value"",
+                    ""id"": ""22f10683-fa87-45f8-b2f0-914cd4757691"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -110,6 +119,127 @@ namespace Simpolony
                     ""action"": ""SecondaryButton"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d39b1118-cc7c-46a7-9e91-d7e69c586948"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""dd6f03e4-2f8c-4fc7-a3cc-877e0d3141bc"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraMovement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""7af1c3a6-e441-4258-a006-ce914b1423dd"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""80d18596-0581-42d4-abdb-2b8cee1eb23a"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""7624260e-32ea-4bec-821c-96ba06de6cf7"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""02a8e677-9cac-4023-b5ab-d022a1408420"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Arrow Keys"",
+                    ""id"": ""177f5f75-cc15-49db-ae33-5acf6abee59c"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraMovement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""6257f354-e7f1-4dd9-8a5b-a60b3382cc95"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""d59f6751-3b19-4f66-84e2-5bed9c0195c0"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""33360fc1-9596-454a-9fd1-d40fca7cf6ab"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""fe963466-4f69-4efa-ab4c-51547c9f718e"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -122,6 +252,7 @@ namespace Simpolony
             m_Player_PrimaryButton = m_Player.FindAction("PrimaryButton", throwIfNotFound: true);
             m_Player_SecondaryButton = m_Player.FindAction("SecondaryButton", throwIfNotFound: true);
             m_Player_ScrollValue = m_Player.FindAction("ScrollValue", throwIfNotFound: true);
+            m_Player_CameraMovement = m_Player.FindAction("CameraMovement", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -185,6 +316,7 @@ namespace Simpolony
         private readonly InputAction m_Player_PrimaryButton;
         private readonly InputAction m_Player_SecondaryButton;
         private readonly InputAction m_Player_ScrollValue;
+        private readonly InputAction m_Player_CameraMovement;
         public struct PlayerActions
         {
             private @GameInput m_Wrapper;
@@ -193,6 +325,7 @@ namespace Simpolony
             public InputAction @PrimaryButton => m_Wrapper.m_Player_PrimaryButton;
             public InputAction @SecondaryButton => m_Wrapper.m_Player_SecondaryButton;
             public InputAction @ScrollValue => m_Wrapper.m_Player_ScrollValue;
+            public InputAction @CameraMovement => m_Wrapper.m_Player_CameraMovement;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -214,6 +347,9 @@ namespace Simpolony
                     @ScrollValue.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScrollValue;
                     @ScrollValue.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScrollValue;
                     @ScrollValue.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScrollValue;
+                    @CameraMovement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraMovement;
+                    @CameraMovement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraMovement;
+                    @CameraMovement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraMovement;
                 }
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
@@ -230,6 +366,9 @@ namespace Simpolony
                     @ScrollValue.started += instance.OnScrollValue;
                     @ScrollValue.performed += instance.OnScrollValue;
                     @ScrollValue.canceled += instance.OnScrollValue;
+                    @CameraMovement.started += instance.OnCameraMovement;
+                    @CameraMovement.performed += instance.OnCameraMovement;
+                    @CameraMovement.canceled += instance.OnCameraMovement;
                 }
             }
         }
@@ -240,6 +379,7 @@ namespace Simpolony
             void OnPrimaryButton(InputAction.CallbackContext context);
             void OnSecondaryButton(InputAction.CallbackContext context);
             void OnScrollValue(InputAction.CallbackContext context);
+            void OnCameraMovement(InputAction.CallbackContext context);
         }
     }
 }

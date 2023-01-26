@@ -13,25 +13,39 @@ namespace Simpolony.Buildings
         [field: SerializeField] public int Required { get; private set; }
         [field: SerializeField] public int Delivered { get; private set; }
 
-        public bool IsDone { get => this.Delivered >= this.Required; }
+        public bool IsDone { get; private set; }
+
+        public Action<BuildingConstruction> OnDone { get; set; }
 
 
         public void Deliver(int amount)
         {
+            if (this.IsDone)
+                return;
+
             this.Delivered += amount;
 
             if (this.Delivered >= this.Required)
             {
-                this.Building.enabled = true;
-                Debug.Log("Building construction complete!");
+                // this.Building.enabled = true;
+                this.Building.SetActive();
+
+                Debug.Log($"'{this.Data}' >> Building construction complete!");
+
+                this.SetDone();
             }
 
             this.UpdateDeliveryState();
+        }
 
-            if (this.IsDone)
-            {
-                GameObject.Destroy(this.gameObject);
-            }
+        private void SetDone()
+        {
+            this.IsDone = true;
+            this.UpdateDeliveryState();
+
+            this.OnDone?.Invoke(this);
+
+            this.Destroy();
         }
 
         public void Link(Building building, BuildingData data)
@@ -41,12 +55,10 @@ namespace Simpolony.Buildings
             this.Data = data;
             this.Required = this.Data.ResourceCost;
 
-            this.transform.SetParent(this.Building.transform, false);
+            this.Building.SetData(this.Data);
 
-            if (!this.IsDone)
-            {
-                this.Building.enabled = false;
-            }
+            this.transform.SetParent(this.Building.transform, false);
+            this.Building.SetInactive();
 
             this.UpdateDeliveryState();
         }
@@ -68,7 +80,9 @@ namespace Simpolony.Buildings
 
         public void Destroy()
         {
-            
+            this.OnDone = null;
+
+            GameObject.Destroy(this.gameObject);
         }
     }
 }
