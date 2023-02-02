@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using static Simpolony.Buildings.BuildingData;
 
 namespace Simpolony.Buildings
 {
@@ -31,6 +32,10 @@ namespace Simpolony.Buildings
                 case BuildingDataType.House:
                 case BuildingDataType.None:
                     return null;
+                case BuildingDataType.BarrierBeacon:
+                    return new BarrierBeaconComponent();
+                case BuildingDataType.Workshop:
+                    return new WorkshopComponent();
                 case BuildingDataType.Mine:
                     return new MineComponent();
                 case BuildingDataType.Tower:
@@ -49,7 +54,39 @@ namespace Simpolony.Buildings
             Mine,
             Tower,
             House,
-            None
+            None,
+            Workshop,
+            BarrierBeacon
+        }
+    }
+
+    public static class BuildingDataTypeExtension
+    {
+        public static string GetDisplayName(this BuildingDataType buildingDataType)
+        {
+            switch (buildingDataType)
+            {
+                case BuildingDataType.Core:
+                    return "Core";
+                case BuildingDataType.Platform:
+                    return "Wall";
+                case BuildingDataType.Mine:
+                    return "Mine";
+                case BuildingDataType.Tower:
+                    return "Tower";
+                case BuildingDataType.House:
+                    return "Expansion Hub";
+                case BuildingDataType.None:
+                    return "MissingNo.";
+                case BuildingDataType.Workshop:
+                    return "Workshop";
+                case BuildingDataType.BarrierBeacon:
+                    return "Barrier Beacon";
+                default:
+                    break;
+            }
+
+            return "";
         }
     }
 

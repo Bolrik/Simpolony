@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: Berserk
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField: 5
+  <HealthPercentPerLevel>k__BackingField: 0.25
   <MovementSpeed>k__BackingField: 3
   <Color>k__BackingField: {r: 1, g: 0, b: 1, a: 1}
   <Damage>k__BackingField: 2
+  <DamagePercentPerLevel>k__BackingField: 0.75
   <LaunchForceMultiplier>k__BackingField: 0.8
   <AttackDelay>k__BackingField: 0.1
   <AttackRange>k__BackingField: 3

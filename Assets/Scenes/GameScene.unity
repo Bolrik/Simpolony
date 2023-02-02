@@ -171,6 +171,53 @@ MonoBehaviour:
     type: 2}
   <GameData>k__BackingField: {fileID: 11400000, guid: 2f35b0412b6e77c4ab6d84a4a8bed580,
     type: 2}
+--- !u!1 &25730531
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 25730532}
+  - component: {fileID: 25730533}
+  m_Layer: 0
+  m_Name: Message
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &25730532
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 25730531}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1996483751}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &25730533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 25730531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4ffa2b332f65124f85c0c337a42a3dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Manager>k__BackingField: {fileID: 11400000, guid: b67ab22aa79b8ac4a9da0d819f1da185,
+    type: 2}
+  <GameScreen>k__BackingField: {fileID: 1849422298}
 --- !u!1 &272081679
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,10 +321,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 330585546}
+  - component: {fileID: 330585548}
   - component: {fileID: 330585545}
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
-  - component: {fileID: 330585548}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -324,7 +371,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1015
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -343,12 +390,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
+  m_Children:
+  - {fileID: 1530899210}
+  m_Father: {fileID: 1933256770}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &330585547
@@ -397,7 +445,54 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Camera>k__BackingField: {fileID: 330585545}
+  <Pivot>k__BackingField: {fileID: 1933256770}
   <GameData>k__BackingField: {fileID: 11400000, guid: 2f35b0412b6e77c4ab6d84a4a8bed580,
+    type: 2}
+--- !u!1 &371986917
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 371986918}
+  - component: {fileID: 371986919}
+  m_Layer: 0
+  m_Name: Score
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &371986918
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 371986917}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1996483751}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &371986919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 371986917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0622dacec2a00a4c970b5a2775ba0ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Manager>k__BackingField: {fileID: 11400000, guid: 8de696a18e61d804e9b5979ea2db4a4e,
     type: 2}
 --- !u!1 &410087039
 GameObject:
@@ -671,6 +766,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Screenshot GUY
       objectReference: {fileID: 0}
+    - target: {fileID: 1916490325201972498, guid: 46a418c4ca17ead4b83f06fb7b4f5cb0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1916490325201972505, guid: 46a418c4ca17ead4b83f06fb7b4f5cb0,
         type: 3}
       propertyPath: <Data>k__BackingField
@@ -840,6 +940,169 @@ MonoBehaviour:
   - value: {fileID: 11400000, guid: 89e657e28949735439c898f63a6f9783, type: 2}
     action: {fileID: -3580653992750370925, guid: 79d0c78084431f644ba9af344ae97a80,
       type: 3}
+  - value: {fileID: 11400000, guid: 4ba576f934ab1584d872b4db8d82482f, type: 2}
+    action: {fileID: 853529282873577347, guid: 79d0c78084431f644ba9af344ae97a80, type: 3}
+  - value: {fileID: 11400000, guid: 87a6c6aa24cb15547b5b8e43fd99f61c, type: 2}
+    action: {fileID: 4805466369610378976, guid: 79d0c78084431f644ba9af344ae97a80,
+      type: 3}
+  - value: {fileID: 11400000, guid: 18ebbaf905cac0b4bb985eef3420c6f6, type: 2}
+    action: {fileID: 2988224569552048258, guid: 79d0c78084431f644ba9af344ae97a80,
+      type: 3}
+--- !u!1 &1215136578
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1215136579}
+  - component: {fileID: 1215136580}
+  m_Layer: 0
+  m_Name: Selection
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1215136579
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215136578}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1996483751}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1215136580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215136578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0c8b00735441fb45be0e3c16f95d829, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Manager>k__BackingField: {fileID: 11400000, guid: 76d6b9f920ce612458a65db09566dfcd,
+    type: 2}
+--- !u!1 &1530899206
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1530899210}
+  - component: {fileID: 1530899209}
+  - component: {fileID: 1530899207}
+  m_Layer: 0
+  m_Name: Minimap
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1530899207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1530899206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 0
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+--- !u!20 &1530899209
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1530899206}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 1
+  orthographic size: 30
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 8400000, guid: f62cd3878999aa64fbda91976cad1ce9, type: 2}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!4 &1530899210
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1530899206}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 330585546}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1849422295
 GameObject:
   m_ObjectHideFlags: 0
@@ -888,7 +1151,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1849422298
 MonoBehaviour:
@@ -903,10 +1166,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Document>k__BackingField: {fileID: 1849422296}
+  <GameData>k__BackingField: {fileID: 11400000, guid: 2f35b0412b6e77c4ab6d84a4a8bed580,
+    type: 2}
   <SidePanel>k__BackingField:
     <SidePanelName>k__BackingField: SidePanel
     <BuildPanel>k__BackingField:
       <BuildPanelName>k__BackingField: BuildPanel
+      <HelpButtonName>k__BackingField: HelpButton
       <ButtonTemplate>k__BackingField: {fileID: 9197481963319205126, guid: fd4a5271b9a4d4742b40050808fd26a7,
         type: 3}
       <BuildMenuButtons>k__BackingField:
@@ -934,6 +1200,7 @@ MonoBehaviour:
           type: 2}
         <BuildingData>k__BackingField: {fileID: 11400000, guid: 20bad69c73608b942a137b706e116b40,
           type: 2}
+      <GameScreen>k__BackingField: {fileID: 1849422298}
     <InfoPanel>k__BackingField:
       <InfoPanelName>k__BackingField: InfoPanel
       <ResourcePanel>k__BackingField:
@@ -947,13 +1214,35 @@ MonoBehaviour:
         <TotalElementName>k__BackingField: Total
         <GameData>k__BackingField: {fileID: 11400000, guid: 2f35b0412b6e77c4ab6d84a4a8bed580,
           type: 2}
-  <WavePanel>k__BackingField:
-    <WaveDisplayName>k__BackingField: WaveDisplay
-    <WaveNumberName>k__BackingField: WaveNumber
-    <WaveFillName>k__BackingField: Fill
-    <EnemyCountName>k__BackingField: EnemyCount
+  <ButtonPanel>k__BackingField:
+    <ButtonPanelName>k__BackingField: ButtonPanel
+    <RemoveBuildingName>k__BackingField: RemoveBuilding
     <GameData>k__BackingField: {fileID: 11400000, guid: 2f35b0412b6e77c4ab6d84a4a8bed580,
       type: 2}
+  <WavePanel>k__BackingField:
+    <WaveDisplayName>k__BackingField: WaveDisplay
+    <WaveFillName>k__BackingField: Fill
+    <WaveNumberName>k__BackingField: WaveNumber
+    <EnemyCountName>k__BackingField: EnemyCount
+    <WaveTimeName>k__BackingField: WaveTime
+    <ScoreName>k__BackingField: Score
+    <GameData>k__BackingField: {fileID: 11400000, guid: 2f35b0412b6e77c4ab6d84a4a8bed580,
+      type: 2}
+  <MenuPanel>k__BackingField:
+    <MenuPanelName>k__BackingField: MenuPanel
+    <ResumeButtonName>k__BackingField: Resume
+    <RestartButtonName>k__BackingField: Restart
+    <TutorialRestartButtonName>k__BackingField: RestartTutorial
+    <QuitButtonName>k__BackingField: Quit
+    <MouseSensitivityName>k__BackingField: MouseSensitivity
+    <ScreenShakeName>k__BackingField: ScreenShake
+    <GameData>k__BackingField: {fileID: 11400000, guid: 2f35b0412b6e77c4ab6d84a4a8bed580,
+      type: 2}
+  <MessagePanel>k__BackingField:
+    <MessagePanelName>k__BackingField: MessagePanel
+  <HelpPanel>k__BackingField:
+    <HelpPanelName>k__BackingField: HelpPanel
+    <ExitButtonName>k__BackingField: ExitButton
 --- !u!1 &1872309431
 GameObject:
   m_ObjectHideFlags: 0
@@ -964,6 +1253,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1872309432}
   - component: {fileID: 1872309433}
+  - component: {fileID: 1872309434}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1002,7 +1292,136 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Data>k__BackingField: {fileID: 11400000, guid: 2f35b0412b6e77c4ab6d84a4a8bed580,
     type: 2}
-  <Trigger>k__BackingField: 0
+  <TutorialMessages>k__BackingField:
+  - <RepeatUntil>k__BackingField: 0
+    <OnStart>k__BackingField: 1
+    <Message>k__BackingField: Survivors, this is a call for help. We've found a way
+      to survive, rebuild and thrive. It's called Simpolony, a colony in the sky
+      where we can stand strong against the endless waves of enemies. But we need
+      you. Are you ready to take on the challenge? Listen closely as I guide you
+      through the basic controls. The fate of our survival rests in your hands.
+    <Duration>k__BackingField: 24
+  - <RepeatUntil>k__BackingField: 0
+    <OnStart>k__BackingField: 3
+    <Message>k__BackingField: In order to survive, we need resources. That's why
+      the first thing we will learn is how to build a mine. We have sent you the
+      necessary resources to get started. Place it near other buildings in order
+      to link up and start extracting resources.
+    <Duration>k__BackingField: 19
+  - <RepeatUntil>k__BackingField: 1
+    <OnStart>k__BackingField: 3
+    <Message>k__BackingField: Building the mine is not optional. It is necessary
+      for our survival. Get to work.
+    <Duration>k__BackingField: 6
+  - <RepeatUntil>k__BackingField: 0
+    <OnStart>k__BackingField: 4
+    <Message>k__BackingField: Well done on the mine. You have secured our resources
+      and now it's time to secure our colony. Build a defense tower to protect us
+      from enemy attacks. Remember, a strong defense is key to survival. So, start
+      building your tower now and secure our future.
+    <Duration>k__BackingField: 18
+  - <RepeatUntil>k__BackingField: 2
+    <OnStart>k__BackingField: 4
+    <Message>k__BackingField: Building a defense tower is not optional. It is necessary
+      for our survival. Refusal to build it will put us all in danger. Get to work
+      now.
+    <Duration>k__BackingField: 10
+  - <RepeatUntil>k__BackingField: 0
+    <OnStart>k__BackingField: 0
+    <Message>k__BackingField: 'Now that you have built your mine and defense tower,
+      it''s important to understand the circles that appear around each structure
+      while building. '
+    <Duration>k__BackingField: 10
+  - <RepeatUntil>k__BackingField: 0
+    <OnStart>k__BackingField: 0
+    <Message>k__BackingField: The inner circle represents the work area, which should
+      be kept clear to ensure proper function of the building. The middle circle
+      represents the link area, which allows for buildings to be linked up for maximum
+      efficiency. The outer circle represents the attack or ability range of the
+      building, so place it strategically for maximum defense.
+    <Duration>k__BackingField: 24
+  - <RepeatUntil>k__BackingField: 0
+    <OnStart>k__BackingField: 0
+    <Message>k__BackingField: Take note of the capacity in the top right corner.
+      As you build more structures, you will need to expand the capacity of your
+      colony. Build an expansion hub when needed to accommodate more buildings.
+    <Duration>k__BackingField: 14
+  - <RepeatUntil>k__BackingField: 0
+    <OnStart>k__BackingField: 0
+    <Message>k__BackingField: We have received reports of an incoming enemy attack.
+      In order to prepare for the assault, we need you to build at least 6 structures
+      as soon as possible. Time is of the essence, the enemy is approaching quickly.
+      Build now and survive.
+    <Duration>k__BackingField: 16
+  - <RepeatUntil>k__BackingField: 3
+    <OnStart>k__BackingField: 0
+    <Message>k__BackingField: This is not a request. Build at least 6 structures
+      now to prepare for the incoming enemy attack. Failure to do so will result
+      in the loss of your colony. Survive at all costs.
+    <Duration>k__BackingField: 7
+  - <RepeatUntil>k__BackingField: 0
+    <OnStart>k__BackingField: 0
+    <Message>k__BackingField: You have learned the basics of building and expanding
+      your colony in Simpolony. But there's more to it than just that. The Workshop
+      can heal other structures and the Barrier Beacon blocks damage for other buildings.
+      Make sure to use them strategically.
+    <Duration>k__BackingField: 16
+  - <RepeatUntil>k__BackingField: 0
+    <OnStart>k__BackingField: 0
+    <Message>k__BackingField: '*The sound of heavy machinery can be heard in the
+      background, a reminder that the enemy is always approaching*.'
+    <Duration>k__BackingField: 7
+  - <RepeatUntil>k__BackingField: 0
+    <OnStart>k__BackingField: 2
+    <Message>k__BackingField: But be warned, the *static noise* ... Good ... *noise*
+      Luck
+    <Duration>k__BackingField: 7
+  <GameManagerProxy>k__BackingField: {fileID: 1872309434}
+--- !u!114 &1872309434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872309431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee30c2296370edd40bc8535fcd1caef2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <GameScreen>k__BackingField: {fileID: 1849422298}
+--- !u!1 &1933256769
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1933256770}
+  m_Layer: 0
+  m_Name: Camera Pivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1933256770
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1933256769}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 330585546}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1996483750
 GameObject:
   m_ObjectHideFlags: 0
@@ -1037,83 +1456,12 @@ Transform:
   - {fileID: 272081680}
   - {fileID: 1032779996}
   - {fileID: 537254457}
+  - {fileID: 1215136579}
+  - {fileID: 25730532}
+  - {fileID: 371986918}
   m_Father: {fileID: 1872309432}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1548394725175090964
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 27124488450516243, guid: 5b550aecca7ec3441b623fa777efb0d9,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 27124488450516243, guid: 5b550aecca7ec3441b623fa777efb0d9,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -4.23
-      objectReference: {fileID: 0}
-    - target: {fileID: 27124488450516243, guid: 5b550aecca7ec3441b623fa777efb0d9,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 27124488450516243, guid: 5b550aecca7ec3441b623fa777efb0d9,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 27124488450516243, guid: 5b550aecca7ec3441b623fa777efb0d9,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 27124488450516243, guid: 5b550aecca7ec3441b623fa777efb0d9,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 27124488450516243, guid: 5b550aecca7ec3441b623fa777efb0d9,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 27124488450516243, guid: 5b550aecca7ec3441b623fa777efb0d9,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 27124488450516243, guid: 5b550aecca7ec3441b623fa777efb0d9,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 27124488450516243, guid: 5b550aecca7ec3441b623fa777efb0d9,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 27124488450516243, guid: 5b550aecca7ec3441b623fa777efb0d9,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 27124488450516255, guid: 5b550aecca7ec3441b623fa777efb0d9,
-        type: 3}
-      propertyPath: m_Name
-      value: LinkPreview
-      objectReference: {fileID: 0}
-    - target: {fileID: 27124488450516255, guid: 5b550aecca7ec3441b623fa777efb0d9,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5b550aecca7ec3441b623fa777efb0d9, type: 3}
 --- !u!1001 &1916490323933783925
 PrefabInstance:
   m_ObjectHideFlags: 0

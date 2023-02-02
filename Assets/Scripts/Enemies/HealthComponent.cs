@@ -5,7 +5,13 @@ namespace Misc
 {
     public abstract class HealthComponent
     {
-        public abstract void TakeDamage(int damage);
+        public int Health { get; protected set; }
+        public int MaxHealth { get; protected set; }
+
+        public int Missing { get => this.MaxHealth - this.Health; }
+
+        public abstract void Hurt(int damage);
+        public abstract void Heal(int damage);
     }
 
     public class HealthComponent<T> : HealthComponent
@@ -13,10 +19,9 @@ namespace Misc
     {
         private T HealthObject { get; set; }
 
-        public int Health { get; private set; }
-
         public Action<T> OnDestroyed { get; set; }
-        public Action<T, int> OnDamaged { get; set; }
+        public Action<T, int> OnHurt { get; set; }
+        public Action<T, int> OnHeal { get; set; }
 
         public bool IsAlive { get; private set; }
 
@@ -24,12 +29,12 @@ namespace Misc
         public void Link(T healthObject)
         {
             this.HealthObject = healthObject;
-            this.Health = this.HealthObject.GetMaxHealth();
+            this.Health = this.MaxHealth = this.HealthObject.GetMaxHealth();
 
             this.IsAlive = true;
         }
 
-        public override void TakeDamage(int damage)
+        public override void Hurt(int damage)
         {
             if (!this.IsAlive)
                 Debug.Log("Object already destroyed!");
@@ -44,13 +49,24 @@ namespace Misc
 
                 this.IsAlive = false;
 
-                this.OnDamaged = null;
+                this.OnHurt = null;
                 this.OnDestroyed = null;
             }
             else
             {
-                this.OnDamaged?.Invoke(this.HealthObject, damage);
+                this.OnHurt?.Invoke(this.HealthObject, damage);
             }
+        }
+
+        public override void Heal(int heal)
+        {
+            if (!this.IsAlive)
+                Debug.Log("Object already destroyed!");
+
+            heal = heal.Abs();
+
+            this.Health = (this.Health + heal).ClampMax(this.MaxHealth);
+            this.OnHeal?.Invoke(this.HealthObject, heal);
         }
     }
 

@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: Basic
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField: 1
+  <HealthPercentPerLevel>k__BackingField: 0.4
   <MovementSpeed>k__BackingField: 1.8
   <Color>k__BackingField: {r: 1, g: 0.5019608, b: 0, a: 1}
   <Damage>k__BackingField: 1
+  <DamagePercentPerLevel>k__BackingField: 0.6
   <LaunchForceMultiplier>k__BackingField: 1.5
   <AttackDelay>k__BackingField: 1.7
   <AttackRange>k__BackingField: 3

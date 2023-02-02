@@ -61,9 +61,19 @@ namespace Simpolony.Buildings
 
             this.UpdatePreviewPosition();
 
-            if (this.BuildingPreview.IsValid && this.PrimaryButton.WasPressed)
+            if (this.PrimaryButton.WasPressed)
             {
-                this.ConfirmPreview();
+                if (this.BuildingPreview.IsValid(out string[] errors))
+                {
+                    this.ConfirmPreview();
+                }
+                else
+                {
+                    for (int i = 0; i < errors.Length; i++)
+                    {
+                        this.GameData.MessageManager.AddMessage($"Construction failed: {errors[i]}");
+                    }
+                }
             }
         }
 
@@ -96,9 +106,7 @@ namespace Simpolony.Buildings
             {
                 this.StopPreview();
 
-                construction.Building.transform.position = this.GameData.GameCameraData.WorldPosition;
-
-                Debug.Log($"'{this.BuildingData}' >> Building construction started!");
+                construction.Building.SetPosition(this.GameData.GameCameraData.WorldPosition);
 
                 this.GameData.ConnectionManager.Connect(connectionTarget.ID, construction.Building.ID);
 
@@ -145,9 +153,13 @@ namespace Simpolony.Buildings
             else
             {
                 if (!unitCapacityCheck)
-                    Debug.Log("Not enough Unit Capacity to start Construction.");
+                {
+                    this.GameData.MessageManager.AddMessage("Construction failed: Not enough Unit Capacity, build more Expansion Hubs!");
+                }
                 if (!resourceCheck)
-                    Debug.Log("Not enough Resources to start Construction.");
+                {
+                    this.GameData.MessageManager.AddMessage("Construction failed: Not enough Resources");
+                }
             }
 
             construction = null;

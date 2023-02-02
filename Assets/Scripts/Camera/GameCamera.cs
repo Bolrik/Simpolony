@@ -9,12 +9,14 @@ namespace Simpolony
     public class GameCamera : MonoBehaviour
     {
         [field: SerializeField, Header("References")] private Camera Camera { get; set; }
+        [field: SerializeField] private Transform Pivot { get; set; }
 
         [field: SerializeField, Header("Data")] private GameData GameData { get; set; }
 
         private GameCameraData Data { get => this.GameData.GameCameraData; }
         private GameDataInput Input { get => this.GameData.Input; }
         
+        InputValue ResetCamera { get => this.Input.ResetCamera; }
         InputValue CameraMovement { get => this.Input.CameraMovement; }
         InputValue ScrollValue { get => this.Input.ScrollValue; }
         InputValue SecondaryButton { get => this.Input.SecondaryButton; }
@@ -28,20 +30,44 @@ namespace Simpolony
         private GameStateManagerData StateData { get => this.GameData.GameStateManagerData; }
         private GameState State { get => this.StateData.State; }
 
+
         public float ZoomValue
         {
             get { return this.Camera.orthographicSize; }
             set { this.Camera.orthographicSize = value; }
         }
 
-
+        public void Shake()
+        {
+            this.Data.SetShakeIntensity(1f);
+        }
 
         void Update()
         {
             this.UpdateValues();
             this.UpdateState();
 
+
+            this.Pivot.position = Vector3.zero;
             this.Data.WorldPosition = this.Camera.ScreenToWorldPoint(this.Input.ViewPosition.Read<Vector2>());
+            this.UpdateScreenShake();
+
+        }
+
+        private void UpdateScreenShake()
+        {
+            if (!this.Data.IsScreenShakeActive)
+                return;
+
+            float shakeIntensity = this.Data.ShakeIntensity - (this.Data.ShakeIntensity * Time.deltaTime * this.Data.CameraShakeDropSpeed);
+
+            if (this.Data.ShakeIntensity <= float.Epsilon)
+                shakeIntensity = 0;
+
+            this.Data.SetShakeIntensity(shakeIntensity);
+
+            Vector2 shake = Random.insideUnitCircle * this.Data.ShakeIntensity;
+            this.Pivot.position = new Vector3(this.Pivot.position.x + shake.x, this.Pivot.position.y + shake.y, this.Pivot.position.z);
         }
 
         private void UpdateValues()
@@ -69,7 +95,9 @@ namespace Simpolony
 
             this.UpdateMouseMovement();
             this.UpdateMovement();
-            this.UpdateZoom();
+
+            if (this.State != GameState.Building)
+                this.UpdateZoom();
         }
 
         private void UpdateZoom()
@@ -98,16 +126,36 @@ namespace Simpolony
 
         private void UpdateMouseMovement()
         {
-            if (this.State == GameState.Idle && this.SecondaryButton.IsPressed)
+            // this.State == GameState.Idle &&
+            if (this.SecondaryButton.IsPressed)
             {
                 Vector2 read = this.PreviousViewPosition - this.CurrentViewPosition;
-                this.transform.position += new Vector3(read.x, read.y) * this.Data.MouseCameraSpeed * this.ZoomValue * Time.deltaTime;
+                Vector3 change = new Vector3(read.x, read.y) * this.Data.MouseCameraSpeed * this.ZoomValue * Time.deltaTime;
+                if (change.magnitude > this.Data.CameraMouseFrameRange)
+                {
+                    change = change.normalized * this.Data.CameraMouseFrameRange;
+                }
+                this.transform.position += change;
             }
         }
 
         private void UpdateMovement()
         {
-            if (this.CameraMovement.IsPressed)
+            if (this.GameData.BuildingManager.Buildings.Count > 0 && this.ResetCamera.WasPressed)
+            {
+                Vector3 position = Vector3.zero;
+                foreach (var building in this.GameData.BuildingManager.Buildings)
+                {
+                    position = building.Value.transform.position;
+                    break;
+
+                }
+
+                position.z = this.transform.position.z;
+
+                this.transform.position = position;
+            }
+            else if (this.CameraMovement.IsPressed)
             {
                 Vector2 read = this.Input.CameraMovement.Read<Vector2>();
                 this.transform.position += new Vector3(read.x, read.y) * this.Data.CameraSpeed * this.ZoomValue * Time.deltaTime;

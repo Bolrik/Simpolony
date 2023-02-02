@@ -67,7 +67,6 @@ namespace Simpolony.Resources
         {
             if (!this.BuildingState.TryGetValue(building.ID, out bool currentState))
             {
-                Debug.Log($"New {building.ID}");
                 this.BuildingState[building.ID] = currentState = false;
             }
 
@@ -76,23 +75,18 @@ namespace Simpolony.Resources
 
             if (stateChanged)
             {
-                Debug.Log($"State Changed {building.ID}: {state}");
                 this.BuildingState[building.ID] = state;
 
                 int change = building.Data.HousingInfo.CapacityBoost;
 
                 if (state)
                 {
-                    Debug.Log($"Limit Changed {building.ID}: {change}");
                     this.Capacity += change;
                 }
                 else
                 {
-                    Debug.Log($"Limit Changed {building.ID}: {-change}");
                     this.Capacity -= change;
                 }
-
-                Debug.Log($"New Limit {this.Capacity}");
             }
         }
 
@@ -100,8 +94,6 @@ namespace Simpolony.Resources
         {
             int cost = building.Data.HousingInfo.Cost;
             this.Current += cost;
-
-            Debug.Log($"Add: {building.ID} ## Cost: {cost} >> Current: {this.Current}");
 
             building.OnActiveStateChanged += this.Building_OnActiveStateChanged;
             building.OnDataChanged += this.Building_OnDataChanged;
@@ -111,8 +103,6 @@ namespace Simpolony.Resources
         {
             int cost = building.Data.HousingInfo.Cost;
             this.Current -= cost;
-
-            Debug.Log($"Rem: {building.ID} ## Cost: {cost} >> Current: {this.Current}");
 
             building.OnActiveStateChanged -= this.Building_OnActiveStateChanged;
             building.OnDataChanged -= this.Building_OnDataChanged;

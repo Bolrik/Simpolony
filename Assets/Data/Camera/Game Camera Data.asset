@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: Game Camera Data
   m_EditorClassIdentifier: 
   <CameraSpeed>k__BackingField: 3
-  <MouseCameraSpeed>k__BackingField: 1
+  <MouseCameraSpeed>k__BackingField: 0.74
+  <CameraMouseFrameRange>k__BackingField: 2
   <ZoomSpeed>k__BackingField: 2
   <ZoomSpeedModifier>k__BackingField: 0.01
+  <CameraShakeDropSpeed>k__BackingField: 50
+  <IsScreenShakeActive>k__BackingField: 1
   <ZoomConstraints>k__BackingField:
     min: 3
-    max: 12
+    max: 20

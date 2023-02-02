@@ -1,0 +1,107 @@
+.MenuButton {
+    width: 320px;
+    font-size: 38px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-left-width: 6px;
+    border-right-width: 6px;
+    border-top-width: 6px;
+    border-bottom-width: 6px;
+    border-left-color: rgb(64, 64, 64);
+    border-right-color: rgb(64, 64, 64);
+    border-top-color: rgb(64, 64, 64);
+    border-bottom-color: rgb(64, 64, 64);
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+}
+
+.MenuButton:hover {
+    -unity-font-style: bold;
+    color: rgb(0, 0, 0);
+    background-color: rgb(160, 160, 160);
+}
+
+.MenuButton:disabled {
+    width: 320px;
+    font-size: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-left-width: 6px;
+    border-right-width: 6px;
+    border-top-width: 6px;
+    border-bottom-width: 6px;
+    border-left-color: rgb(64, 64, 64);
+    border-right-color: rgb(64, 64, 64);
+    border-top-color: rgb(64, 64, 64);
+    border-bottom-color: rgb(64, 64, 64);
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: rgba(210, 210, 210, 0.5);
+}
+
+.DestroyButton:hover {
+    background-color: rgb(171, 0, 0);
+}
+
+.InfoLabel {
+    font-size: 26px;
+    white-space: normal;
+    color: rgb(212, 212, 212);
+}
+
+.InfoLabelHeader {
+    font-size: 30px;
+    -unity-font-style: bold-and-italic;
+    color: rgb(212, 212, 212);
+}
+
+.BuildingInfoLabelHeader {
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    -unity-font-style: bold-and-italic;
+    font-size: 22px;
+    color: rgb(212, 212, 212);
+}
+
+.BuildingInfoLabelContent {
+    flex-grow: 1;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    font-size: 18px;
+    white-space: normal;
+    color: rgb(212, 212, 212);
+}
+
+.Column {
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: stretch;
+    justify-content: flex-end;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.MenuToggle > VisualElement > VisualElement {
+    align-items: stretch;
+    opacity: 1;
+    width: 24px;
+    height: 24px;
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 40px;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    margin-left: 20px;
+}

@@ -12,15 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec0fec4d167b2d419e0a27cebf4de40, type: 3}
   m_Name: Platform
   m_EditorClassIdentifier: 
-  <ResourceCost>k__BackingField: 2
+  <ResourceCost>k__BackingField: 4
   <ConstructionStepTime>k__BackingField: 3
-  <Health>k__BackingField: 3
+  <Health>k__BackingField: 14
   <DataType>k__BackingField: 1
   <VisionRange>k__BackingField: 0
+  <AbilityRange>k__BackingField: 0
   <Color>k__BackingField: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
   <HousingInfo>k__BackingField:
     <Cost>k__BackingField: 1
-    <LimitChange>k__BackingField: 0
+    <CapacityBoost>k__BackingField: 0
   <MenuSprite>k__BackingField: {fileID: 21300000, guid: 1d39db603b6362b4591ec0b403cc6f23,
     type: 3}
-  <DisplayName>k__BackingField: Platform
+  <DisplayName>k__BackingField: Wall

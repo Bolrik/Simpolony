@@ -20,6 +20,9 @@ namespace Simpolony.Buildings
 
         public void Deliver(int amount)
         {
+            if (this.Building.IsDestroyed)
+                this.IsDone = true;
+
             if (this.IsDone)
                 return;
 

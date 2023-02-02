@@ -73,6 +73,33 @@ namespace Simpolony
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Menu"",
+                    ""type"": ""Button"",
+                    ""id"": ""120618f1-8806-4a0d-b100-787981ea41e2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ResetCamera"",
+                    ""type"": ""Button"",
+                    ""id"": ""219f0815-e1a4-4b7c-9fde-d72a28b41b33"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Destroy"",
+                    ""type"": ""Button"",
+                    ""id"": ""15892816-e573-485f-91b4-9a5e056cf4d8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -240,6 +267,61 @@ namespace Simpolony
                     ""action"": ""CameraMovement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e36ce96e-7e3b-4313-9433-caf2b6a50b56"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ec29be60-1ca7-4e6b-a42c-f30f39dfee1c"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""64d3dccd-bee1-427b-b0bf-53fbe59979f4"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ResetCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""27afb9de-0db3-4c17-a075-0c00b1548fe8"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ResetCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c4b51dae-619f-4053-a5e8-995023a35398"",
+                    ""path"": ""<Keyboard>/delete"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Destroy"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -253,6 +335,9 @@ namespace Simpolony
             m_Player_SecondaryButton = m_Player.FindAction("SecondaryButton", throwIfNotFound: true);
             m_Player_ScrollValue = m_Player.FindAction("ScrollValue", throwIfNotFound: true);
             m_Player_CameraMovement = m_Player.FindAction("CameraMovement", throwIfNotFound: true);
+            m_Player_Menu = m_Player.FindAction("Menu", throwIfNotFound: true);
+            m_Player_ResetCamera = m_Player.FindAction("ResetCamera", throwIfNotFound: true);
+            m_Player_Destroy = m_Player.FindAction("Destroy", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -317,6 +402,9 @@ namespace Simpolony
         private readonly InputAction m_Player_SecondaryButton;
         private readonly InputAction m_Player_ScrollValue;
         private readonly InputAction m_Player_CameraMovement;
+        private readonly InputAction m_Player_Menu;
+        private readonly InputAction m_Player_ResetCamera;
+        private readonly InputAction m_Player_Destroy;
         public struct PlayerActions
         {
             private @GameInput m_Wrapper;
@@ -326,6 +414,9 @@ namespace Simpolony
             public InputAction @SecondaryButton => m_Wrapper.m_Player_SecondaryButton;
             public InputAction @ScrollValue => m_Wrapper.m_Player_ScrollValue;
             public InputAction @CameraMovement => m_Wrapper.m_Player_CameraMovement;
+            public InputAction @Menu => m_Wrapper.m_Player_Menu;
+            public InputAction @ResetCamera => m_Wrapper.m_Player_ResetCamera;
+            public InputAction @Destroy => m_Wrapper.m_Player_Destroy;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -350,6 +441,15 @@ namespace Simpolony
                     @CameraMovement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraMovement;
                     @CameraMovement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraMovement;
                     @CameraMovement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCameraMovement;
+                    @Menu.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
+                    @Menu.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
+                    @Menu.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
+                    @ResetCamera.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnResetCamera;
+                    @ResetCamera.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnResetCamera;
+                    @ResetCamera.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnResetCamera;
+                    @Destroy.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDestroy;
+                    @Destroy.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDestroy;
+                    @Destroy.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDestroy;
                 }
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
@@ -369,6 +469,15 @@ namespace Simpolony
                     @CameraMovement.started += instance.OnCameraMovement;
                     @CameraMovement.performed += instance.OnCameraMovement;
                     @CameraMovement.canceled += instance.OnCameraMovement;
+                    @Menu.started += instance.OnMenu;
+                    @Menu.performed += instance.OnMenu;
+                    @Menu.canceled += instance.OnMenu;
+                    @ResetCamera.started += instance.OnResetCamera;
+                    @ResetCamera.performed += instance.OnResetCamera;
+                    @ResetCamera.canceled += instance.OnResetCamera;
+                    @Destroy.started += instance.OnDestroy;
+                    @Destroy.performed += instance.OnDestroy;
+                    @Destroy.canceled += instance.OnDestroy;
                 }
             }
         }
@@ -380,6 +489,9 @@ namespace Simpolony
             void OnSecondaryButton(InputAction.CallbackContext context);
             void OnScrollValue(InputAction.CallbackContext context);
             void OnCameraMovement(InputAction.CallbackContext context);
+            void OnMenu(InputAction.CallbackContext context);
+            void OnResetCamera(InputAction.CallbackContext context);
+            void OnDestroy(InputAction.CallbackContext context);
         }
     }
 }

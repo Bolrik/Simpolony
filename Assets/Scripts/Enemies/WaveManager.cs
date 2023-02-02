@@ -17,17 +17,26 @@ namespace Enemies
         public float WaveTimer { get; private set; } = 0;
         public float WaveTimerMax { get; private set; } = 0;
 
+        public float TotalWaveTime { get; private set; }
+
         private bool Spawning { get; set; } = false;
+
+        bool IsPaused { get; set; }
 
 
         public override void DoAwake()
         {
             this.Wave = null;
-            this.WaveTimer = 0;
-            this.Spawning = false;
+
             this.WaveNumber = 0;
+            this.WaveTimer = 0;
+
+            this.TotalWaveTime = 0;
+
+            this.Spawning = false;
 
             this.EnemiesRemaining = 0;
+            this.IsPaused = false;
         }
 
         public override void DoStart()
@@ -38,6 +47,11 @@ namespace Enemies
         // public void UpdateManager(Vector3 spawnPoint, float baseSpawnDistance)
         public override void DoUpdate()
         {
+            if (this.IsPaused)
+                return;
+
+            this.TotalWaveTime += Time.deltaTime;
+
             if (this.Spawning)
             {
                 if (this.Wave.SpawnBudget <= 0)
@@ -104,6 +118,8 @@ namespace Enemies
 
                 int realWave = (this.WaveNumber - enemyWaveData.StartingWave);
                 int level = enemyWaveData.WavesPerLevel > 0 ? (realWave / enemyWaveData.WavesPerLevel) : 0;
+                
+                Debug.Log("Level:" + level);
 
                 Enemy enemy = Instantiate(this.WaveData.EnemyPrefab, spawnPos, Quaternion.identity);
                 enemy.SetData(enemyWaveData.EnemyData, level);
@@ -120,6 +136,17 @@ namespace Enemies
         private void Enemy_OnEnemyDestroyed(Enemy enemy)
         {
             this.EnemiesRemaining--;
+        }
+
+
+        public void Pause()
+        {
+            this.IsPaused = true;
+        }
+
+        public void Resume()
+        {
+            this.IsPaused = false;
         }
     }
 }

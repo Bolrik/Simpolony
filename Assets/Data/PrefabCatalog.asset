@@ -14,3 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Rocket>k__BackingField: {fileID: 8553619288677110836, guid: 3ec972b4cd1bd4a4ba9a802df4daf238,
     type: 3}
+  <DisarmRay>k__BackingField: {fileID: 129537791515857138, guid: c444ebd37a349de43a37b782e061d712,
+    type: 3}
+  <HealBolt>k__BackingField: {fileID: 5841544551440963432, guid: 94656d9d52a639e459e8eb9f3733c8a3,
+    type: 3}
+  <FloatingText>k__BackingField: {fileID: 302558518054201487, guid: bcd631f3f04f05e4cb7c673d3cb90cf0,
+    type: 3}
+  <HealthIndicator>k__BackingField: {fileID: 28063867215910225, guid: 1aeb6bc4a60b3ab4db0d898cd0a288eb,
+    type: 3}
+  <HumanParticles>k__BackingField: {fileID: -525543360517470520, guid: 1f861ebc6250afb40b7508e3aeb77139,
+    type: 3}

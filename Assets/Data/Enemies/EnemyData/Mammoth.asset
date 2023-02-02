@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Mammoth
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField: 25
+  <HealthPercentPerLevel>k__BackingField: 0.8
   <MovementSpeed>k__BackingField: 1.1
   <Color>k__BackingField: {r: 1, g: 0, b: 0, a: 1}
-  <Damage>k__BackingField: 5
+  <Damage>k__BackingField: 4
+  <DamagePercentPerLevel>k__BackingField: 0.2
   <LaunchForceMultiplier>k__BackingField: 1.5
-  <AttackDelay>k__BackingField: 3
+  <AttackDelay>k__BackingField: 1.7
   <AttackRange>k__BackingField: 3
   <Points>k__BackingField: 50

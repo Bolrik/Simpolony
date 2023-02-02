@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: Tank
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField: 7
+  <HealthPercentPerLevel>k__BackingField: 0.5
   <MovementSpeed>k__BackingField: 1.3
   <Color>k__BackingField: {r: 0.5019608, g: 0.2509804, b: 0, a: 1}
-  <Damage>k__BackingField: 2
+  <Damage>k__BackingField: 1
+  <DamagePercentPerLevel>k__BackingField: 0.5
   <LaunchForceMultiplier>k__BackingField: 1.5
   <AttackDelay>k__BackingField: 2
   <AttackRange>k__BackingField: 2

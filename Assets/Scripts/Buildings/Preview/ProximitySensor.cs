@@ -157,13 +157,17 @@ namespace Simpolony.Buildings
             this.IsActive = false;
         }
 
+        public bool Contains(T t)
+        {
+            return this.Available.Contains(t);
+        }
+
         private void OnEnter(Transform transform)
         {
             if (!(transform.GetProxyComponent<T>() is T match))
                 return;
 
             this.Available.Add(match);
-            Debug.Log($"+ Count: {this.Available.Count}");
         }
 
         private void OnExit(Transform transform)
@@ -172,7 +176,6 @@ namespace Simpolony.Buildings
                 return;
 
             this.Available.Remove(match);
-            Debug.Log($"- Count: {this.Available.Count}");
         }
 
         public T[] GetAll() => this.Available.ToArray();

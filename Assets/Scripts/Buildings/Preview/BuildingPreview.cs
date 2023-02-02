@@ -22,11 +22,14 @@ namespace Simpolony.Buildings
 
         List<Transform> BlockList { get; set; } = new List<Transform>();
 
-        public bool IsValid { get; private set; }
-        
         private LinkPreview LinkPreview { get; set; }
 
         public Building DesiredLink { get => this.LinkPreview.Target; }
+
+
+        private bool IsLinked { get; set; }
+        private bool IsBlocked { get; set; }
+
 
 
         private void Awake()
@@ -52,15 +55,42 @@ namespace Simpolony.Buildings
 
         private void UpdateIsValid()
         {
-            bool isBlocked = this.BlockList.Count > 0;
-            bool isLinked = this.LinkPreview.Count > 0;
+            this.IsBlocked = this.BlockList.Count > 0;
+            this.IsLinked = this.LinkPreview.Count > 0;
 
-            this.IsValid = !isBlocked && isLinked;
+            bool isValid = this.IsValid(out _);
 
-            this.BlockCheck.Renderer.material.color = isBlocked ? this.BuildingPreviewData.InvalidColor : this.BuildingPreviewData.ValidColor;
-            this.BlockCheck.SetVisible(isBlocked || this.GameData.ShowValidBuildingPreviewBlockedCheck);
+            this.BlockCheck.Renderer.material.color = this.IsBlocked ? this.BuildingPreviewData.InvalidColor : this.BuildingPreviewData.ValidColor;
+            this.BlockCheck.SetVisible(this.IsBlocked || this.GameData.ShowValidBuildingPreviewBlockedCheck);
 
-            this.PreviewRenderer.material.color = this.IsValid ? this.BuildingPreviewData.ValidColor : this.BuildingPreviewData.InvalidColor;
+            this.PreviewRenderer.material.color = isValid ? this.BuildingPreviewData.ValidColor : this.BuildingPreviewData.InvalidColor;
+        }
+
+        public bool IsValid(out string[] errors)
+        {
+            bool toReturn = !this.IsBlocked && this.IsLinked;
+
+            List<string> error = new List<string>();
+
+            if (this.IsBlocked)
+                error.Add("Area is blocked by other building");
+            if (!this.IsLinked)
+                error.Add("Could not link to other building");
+
+            errors = error.ToArray();
+            return toReturn;
+        }
+
+        public string[] GetInvalidState()
+        {
+            List<string> error = new List<string>();
+
+            if (this.IsBlocked)
+                error.Add("Area is blocked by other building");
+            if (!this.IsLinked)
+                error.Add("Could not link to other building");
+
+            return error.ToArray();
         }
 
 

@@ -7,7 +7,13 @@
       "dependencies": {
         "com.unity.inputsystem": "1.4.4"
       },
-      "hash": "408434377a01b621f2d9b8d69be655612dee17fe"
+      "hash": "681974b7d8e522763c55349aacaa13138cd670d1"
+    },
+    "com.unity.2d.sprite": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {}
     },
     "com.unity.burst": {
       "version": "1.7.3",

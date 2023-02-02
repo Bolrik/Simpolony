@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using FreschGames.Core.Misc;
+using UnityEngine;
 
 namespace Simpolony.Misc
 {

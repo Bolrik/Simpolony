@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Barrier Beacon
   m_EditorClassIdentifier: 
   <ResourceCost>k__BackingField: 20
-  <ConstructionStepTime>k__BackingField: 1
+  <ConstructionStepTime>k__BackingField: 0.6
   <Health>k__BackingField: 20
-  <DataType>k__BackingField: 1
-  <VisionRange>k__BackingField: 4
-  <AbilityRange>k__BackingField: 5
+  <DataType>k__BackingField: 7
+  <VisionRange>k__BackingField: 0
+  <AbilityRange>k__BackingField: 20
   <Color>k__BackingField: {r: 0.5019608, g: 1, b: 0.7529412, a: 1}
   <HousingInfo>k__BackingField:
     <Cost>k__BackingField: 1

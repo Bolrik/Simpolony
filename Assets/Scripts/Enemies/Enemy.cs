@@ -1,6 +1,7 @@
 ﻿using Misc;
 using Simpolony;
 using Simpolony.Buildings;
+using Simpolony.Misc;
 using Simpolony.Projectiles;
 using UnityEngine;
 
@@ -28,14 +29,16 @@ namespace Enemies
         HealthComponent IHealthObject.Health => this.Health;
 
         Rocket Rocket { get; set; }
-
+        Vector3 ValidPosition { get; set; }
 
         public bool IsAlive { get => this.Health.IsAlive; }
 
 
         private void Start()
         {
-            this.SetData(this.Data, 0);
+            this.SetData(this.Data, this.Level);
+
+            this.SetDestination();
 
             this.State = new MoveState(this);
             this.Vision.Storage.Start();
@@ -44,6 +47,8 @@ namespace Enemies
         private void Update()
         {
             this.State.Tick();
+
+            this.ValidPosition = this.transform.position;
         }
 
         public void SetData(EnemyData data, int level)
@@ -65,6 +70,8 @@ namespace Enemies
             {
                 this.Health = new HealthComponent<Enemy>();
                 this.Health.Link(this);
+                this.Health.OnHurt += this.Health_OnHurt;
+                this.Health.OnHeal += this.Health_OnHeal;
                 this.Health.OnDestroyed += this.Health_OnDestroyed;
             }
             else
@@ -73,16 +80,60 @@ namespace Enemies
             }
         }
 
-        public void SetDestination(Vector3 destination)
+        public void SetDestination()
         {
-            this.Destination = destination;
+            int length = this.GameData.BuildingManager.Buildings.Count;
+            int index = 0;
+
+            Building target = null;
+
+            foreach (var building in this.GameData.BuildingManager.Buildings)
+            {
+                if (Random.value > .8f)
+                {
+                    target = building.Value;
+                    break;
+                }
+
+                index++;
+
+                if (index == length)
+                    target = building.Value;
+            }
+
+            this.Destination = target?.transform.position ?? Vector3.zero;
             this.State = new MoveState(this);
+        }
+
+        public void CheckDestination()
+        {
+            if ((transform.position - this.Destination).magnitude <= .5f)
+            {
+                this.SetDestination();
+            }
+        }
+
+        private void Health_OnHurt(Enemy building, int amount)
+        {
+            FloatingText text = GameObject.Instantiate(this.GameData.PrefabCatalog.FloatingText);
+            text.SetText(this.ValidPosition + Vector3.forward * -5,
+                $"{amount}", this.GameData.EnemySettings.FloatingTextHurtColor, Vector3.up + Vector3.right * (Random.value * 2 - 1), 2);
+        }
+
+        private void Health_OnHeal(Enemy building, int amount)
+        {
+            FloatingText text = GameObject.Instantiate(this.GameData.PrefabCatalog.FloatingText);
+            text.SetText(this.ValidPosition + Vector3.forward * -5,
+                $"{amount}", this.GameData.EnemySettings.FloatingTextHealColor, Vector3.up + Vector3.right * (Random.value * 2 - 1), 2);
         }
 
         private void Health_OnDestroyed(Enemy enemy)
         {
             this.gameObject.SetActive(false);
             this.Rocket?.Destroy();
+
+            this.GameData.ScoreManager.Add(this.Data);
+
             GameObject.Destroy(this.gameObject);
         }
 
@@ -145,7 +196,7 @@ namespace Enemies
         private void StartRocket()
         {
             this.Rocket = GameObject.Instantiate(this.GameData.PrefabCatalog.Rocket);
-            this.Rocket.SetTarget(this.Target, this.transform.position, this.Data.LaunchForceMultiplier, this.Damage);
+            this.Rocket.SetTarget(this.Target, this.transform.position, GameFaction.Enemy, this.Data.LaunchForceMultiplier, this.Damage);
             this.Rocket.OnImpact += this.Rocket_OnDestroy;
         }
 
@@ -155,12 +206,6 @@ namespace Enemies
             this.Rocket = null;
         }
 
-        private void DamageTarget()
-        {
-            if (this.Target != null)
-                this.Target.Health.TakeDamage(this.Data.Damage);
-        }
-
         public void CheckAttack()
         {
             if (this.Target != null && this.Target.Health.IsAlive)
@@ -168,7 +213,7 @@ namespace Enemies
                 return;
             }
 
-            Debug.Log("Target Destroyed!");
+            // Debug.Log("Target Destroyed!");
 
             this.Target = null;
             this.State = new MoveState(this);
@@ -181,7 +226,11 @@ namespace Enemies
 
         public int GetMaxHealth()
         {
-            return (int)((this.Data?.MaxHealth ?? 1) * (1 + this.Level * this.Data.HealthPercentPerLevel));
+            int maxHealth = (int)((this.Data?.MaxHealth ?? 1f) * (1 + this.Level * this.Data.HealthPercentPerLevel));
+
+            Debug.Log(maxHealth);
+
+            return maxHealth;
         }
 
         private void CalculateDamage()
@@ -209,6 +258,7 @@ namespace Enemies
 
             public override void Tick()
             {
+                this.Enemy.CheckDestination();
                 this.Enemy.MoveToDestination();
                 this.Enemy.CheckForBuildingsInProximity();
             }

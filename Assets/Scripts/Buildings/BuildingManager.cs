@@ -21,6 +21,8 @@ namespace Simpolony.Buildings
         public override void DoAwake()
         {
             this.Buildings.Clear();
+            this.OnAdded = null;
+            this.OnRemoved = null;
         }
 
         public override void DoStart()

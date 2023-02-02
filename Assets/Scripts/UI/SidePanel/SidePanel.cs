@@ -14,7 +14,6 @@ namespace Simpolony.UI.SidePanelElements
         [field: SerializeField, Header("Components")] private BuildPanel BuildPanel { get; set; }
         [field: SerializeField] private InfoPanel InfoPanel { get; set; }
         
-        
         VisualElement SidePanelElement { get; set; }
 
 

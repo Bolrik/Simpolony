@@ -29,7 +29,7 @@ namespace Simpolony.UI.SidePanelElements.BuildPanelElements
             this.Cost = this.Button.Q<Label>(this.CostName);
             this.Image = this.Button.Q<VisualElement>(this.ImageName);
 
-            this.Title.text = $"{this.BuildingData.name}"; //this.DisplayName;
+            this.Title.text = $"{this.BuildingData.DisplayName}"; //this.DisplayName;
             this.Cost.text = $"{this.BuildingData.ResourceCost}";
             this.Image.style.backgroundImage = new StyleBackground(this.BuildingData.MenuSprite);
         }

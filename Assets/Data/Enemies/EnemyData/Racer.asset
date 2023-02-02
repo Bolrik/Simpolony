@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: Racer
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField: 2
+  <HealthPercentPerLevel>k__BackingField: 0.1
   <MovementSpeed>k__BackingField: 5
   <Color>k__BackingField: {r: 0.2509804, g: 0.5019608, b: 0, a: 1}
   <Damage>k__BackingField: 1
+  <DamagePercentPerLevel>k__BackingField: 0.9
   <LaunchForceMultiplier>k__BackingField: 1.5
   <AttackDelay>k__BackingField: 1.5
   <AttackRange>k__BackingField: 2

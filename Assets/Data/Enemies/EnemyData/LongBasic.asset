@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: LongBasic
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField: 3
-  <HealthPercentPerLevel>k__BackingField: 0
+  <HealthPercentPerLevel>k__BackingField: 0.4
   <MovementSpeed>k__BackingField: 1.5
   <Color>k__BackingField: {r: 1, g: 1, b: 0, a: 1}
-  <Damage>k__BackingField: 2
-  <DamagePercentPerLevel>k__BackingField: 0
+  <Damage>k__BackingField: 1
+  <DamagePercentPerLevel>k__BackingField: 0.6
   <LaunchForceMultiplier>k__BackingField: 1.5
   <AttackDelay>k__BackingField: 2
-  <AttackRange>k__BackingField: 5
+  <AttackRange>k__BackingField: 4.5
   <Points>k__BackingField: 25

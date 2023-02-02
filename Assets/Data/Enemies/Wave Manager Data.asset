@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Wave Manager Data
   m_EditorClassIdentifier: 
   <TimeBetweenWaves>k__BackingField: 30
-  <TimeBetweenSpawns>k__BackingField: 0.25
+  <TimeBetweenSpawns>k__BackingField: 0.025
   <SpawnDistance>k__BackingField:
     min: 30
     max: 40
-  <BaseWaveBudget>k__BackingField: 2
-  <WaveBudgetIncreasePerLevel>k__BackingField: 5
+  <BaseWaveBudget>k__BackingField: -3
+  <WaveBudgetIncreasePerLevel>k__BackingField: 10
   <EnemyData>k__BackingField:
   - <EnemyData>k__BackingField: {fileID: 11400000, guid: 9e32c5216ff4905498976c36ffb7a803,
       type: 2}
@@ -26,41 +26,48 @@ MonoBehaviour:
     <WaveChanceModifier>k__BackingField: -1
     <StartingWave>k__BackingField: 0
     <Cost>k__BackingField: 2
+    <WavesPerLevel>k__BackingField: 3
   - <EnemyData>k__BackingField: {fileID: 11400000, guid: 660aacc707784094e98b270fede73dfe,
       type: 2}
     <Chance>k__BackingField: 10
     <WaveChanceModifier>k__BackingField: 8
     <StartingWave>k__BackingField: 1
     <Cost>k__BackingField: 4
+    <WavesPerLevel>k__BackingField: 3
   - <EnemyData>k__BackingField: {fileID: 11400000, guid: e26362c23dd4df945b1ea273941f4441,
       type: 2}
     <Chance>k__BackingField: 15
     <WaveChanceModifier>k__BackingField: 8
     <StartingWave>k__BackingField: 5
     <Cost>k__BackingField: 3
+    <WavesPerLevel>k__BackingField: 3
   - <EnemyData>k__BackingField: {fileID: 11400000, guid: 9f11fd245ecaf1542b7f351e1c9c57fa,
       type: 2}
     <Chance>k__BackingField: 25
     <WaveChanceModifier>k__BackingField: 8
-    <StartingWave>k__BackingField: 5
+    <StartingWave>k__BackingField: 7
     <Cost>k__BackingField: 3
+    <WavesPerLevel>k__BackingField: 3
   - <EnemyData>k__BackingField: {fileID: 11400000, guid: dcc851d7c86314d468516ffa6ef31cf2,
       type: 2}
     <Chance>k__BackingField: 25
     <WaveChanceModifier>k__BackingField: 9
     <StartingWave>k__BackingField: 10
     <Cost>k__BackingField: 4
+    <WavesPerLevel>k__BackingField: 4
   - <EnemyData>k__BackingField: {fileID: 11400000, guid: 114b02e1745bbae41a7f9dddc0ceacda,
       type: 2}
     <Chance>k__BackingField: 25
     <WaveChanceModifier>k__BackingField: 9
-    <StartingWave>k__BackingField: 10
+    <StartingWave>k__BackingField: 12
     <Cost>k__BackingField: 5
+    <WavesPerLevel>k__BackingField: 4
   - <EnemyData>k__BackingField: {fileID: 11400000, guid: 766df64d4ffbee8449d9c2e9d1c6ba67,
       type: 2}
     <Chance>k__BackingField: 25
     <WaveChanceModifier>k__BackingField: 10
-    <StartingWave>k__BackingField: 15
+    <StartingWave>k__BackingField: 16
     <Cost>k__BackingField: 9
+    <WavesPerLevel>k__BackingField: 4
   <EnemyPrefab>k__BackingField: {fileID: 3479947400402493964, guid: e69e55adc41542a45a2d87c7eb5d02be,
     type: 3}

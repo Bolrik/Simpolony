@@ -7,15 +7,18 @@ namespace Simpolony.Projectiles
 {
     public class Rocket : MonoBehaviour
     {
-        [field: SerializeField] public ParticleSystem SmokeParticleSystem { get; private set; }
+        [field: SerializeField, Header("Data")] public GameData GameData { get; private set; }
+
+        [field: SerializeField, Header("References")] public ParticleSystem SmokeParticleSystem { get; private set; }
         [field: SerializeField] public ParticleSystem ExplosionParticleSystem { get; private set; }
 
+        public GameFaction Faction { get; private set; }
 
         private Vector3 Origin { get; set; }
         private Vector3 Target { get; set; }
 
         private ITarget TargetObject { get; set; }
-        bool IsDestroyed { get; set; }
+        public bool IsDestroyed { get; private set; }
 
 
 
@@ -43,13 +46,14 @@ namespace Simpolony.Projectiles
         private RocketStage Stage { get; set; }
 
 
-        public void SetTarget(ITarget target, Vector3 origin, float launchForceMultiplier, int damage)
+        public void SetTarget(ITarget target, Vector3 origin, GameFaction faction, float launchForceMultiplier, int damage)
         {
             this.TargetObject = target;
             this.Target = this.TargetObject.GetTargetPosition();
 
             this.Origin = origin;
-            //this.OnImpact = onImpact;
+            this.Faction = faction;
+
             this.Damage = damage;
 
             Vector3 delta = this.Target - this.Origin;
@@ -176,7 +180,7 @@ namespace Simpolony.Projectiles
         private void DealDamage()
         {
             if (this.TargetObject.IsAlive)
-                this.TargetObject.Health.TakeDamage(this.Damage);
+                this.TargetObject.Health.Hurt(this.Damage);
         }
 
         public void Destroy()
@@ -184,6 +188,7 @@ namespace Simpolony.Projectiles
             if (this.IsDestroyed)
                 return;
 
+            this.GameData.GameCameraData.Shake();
             this.IsDestroyed = true;
 
             var explosion = this.ExplosionParticleSystem.main;

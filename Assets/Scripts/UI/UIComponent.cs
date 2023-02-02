@@ -1,6 +1,6 @@
 ﻿using UnityEngine.UIElements;
 
-namespace Simpolony.UI.SidePanelElements
+namespace Simpolony.UI
 {
     public abstract class UIComponent
     {

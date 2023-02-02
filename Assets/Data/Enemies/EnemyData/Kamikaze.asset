@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Kamikaze
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField: 1
+  <HealthPercentPerLevel>k__BackingField: 0
   <MovementSpeed>k__BackingField: 5
   <Color>k__BackingField: {r: 0.5019608, g: 0, b: 1, a: 1}
-  <Damage>k__BackingField: 15
+  <Damage>k__BackingField: 5
+  <DamagePercentPerLevel>k__BackingField: 0.3
   <LaunchForceMultiplier>k__BackingField: 0.01
-  <AttackDelay>k__BackingField: 0.1
+  <AttackDelay>k__BackingField: 2
   <AttackRange>k__BackingField: 1.3
   <Points>k__BackingField: 40
